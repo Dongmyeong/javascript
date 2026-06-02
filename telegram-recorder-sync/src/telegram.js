@@ -1,22 +1,12 @@
 // Thin wrapper over the Telegram Bot API using the built-in global `fetch`,
 // `FormData` and `Blob` (Node 18+). No external HTTP library required.
 
-const fs = require('fs');
 const path = require('path');
+const { fileToBlob } = require('./fileblob');
 
 const API_BASE = 'https://api.telegram.org';
 
 const sleep = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
-
-// Build a Blob backed by a file. `fs.openAsBlob` (Node 20+) avoids loading the
-// whole file into memory; otherwise we fall back to reading it.
-const fileToBlob = async (filePath) => {
-  if (typeof fs.openAsBlob === 'function') {
-    return fs.openAsBlob(filePath);
-  }
-  const buffer = await fs.promises.readFile(filePath);
-  return new Blob([buffer]);
-};
 
 const createTelegramClient = ({
   botToken,
@@ -48,40 +38,60 @@ const createTelegramClient = ({
     }
   };
 
-  // Verify the token and return the bot's own info.
-  const getMe = () => callApi('getMe', undefined);
-
-  const sendFile = async (filePath, { caption, asAudio = false } = {}) => {
-    const method = asAudio ? 'sendAudio' : 'sendDocument';
-    const field = asAudio ? 'audio' : 'document';
-
+  // Retry transient failures (network/abort, 429, 5xx) with exponential backoff.
+  const withRetry = async (fn) => {
     let attempt = 0;
-    // Retry transient failures (network, 429, 5xx) with exponential backoff.
     for (;;) {
       attempt += 1;
       try {
-        const form = new FormData();
-        form.append('chat_id', String(chatId));
-        if (caption) {
-          form.append('caption', caption);
-        }
-        const blob = await fileToBlob(filePath);
-        form.append(field, blob, path.basename(filePath));
-        return await callApi(method, form);
+        return await fn();
       } catch (err) {
-        const retryable = !err.status || err.status === 429 || err.status >= 500;
+        const retryable = !err.status
+          || err.status === 429
+          || err.status >= 500
+          || err.name === 'AbortError';
         if (!retryable || attempt > maxRetries) {
           throw err;
         }
-        const backoff = err.retryAfter
-          ? err.retryAfter * 1000
-          : 2 ** attempt * 1000;
+        const backoff = err.retryAfter ? err.retryAfter * 1000 : 2 ** attempt * 1000;
         await sleep(backoff);
       }
     }
   };
 
-  return { getMe, sendFile };
+  // Verify the token and return the bot's own info.
+  const getMe = () => withRetry(() => callApi('getMe', undefined));
+
+  const sendBlob = (blob, filename, { caption, asAudio = false } = {}) => {
+    const method = asAudio ? 'sendAudio' : 'sendDocument';
+    const field = asAudio ? 'audio' : 'document';
+    return withRetry(() => {
+      const form = new FormData();
+      form.append('chat_id', String(chatId));
+      if (caption) {
+        form.append('caption', caption);
+      }
+      form.append(field, blob, filename);
+      return callApi(method, form);
+    });
+  };
+
+  const sendFile = async (filePath, options = {}) => {
+    const blob = await fileToBlob(filePath);
+    return sendBlob(blob, path.basename(filePath), options);
+  };
+
+  const sendMessage = (text) => withRetry(() => {
+    const form = new FormData();
+    form.append('chat_id', String(chatId));
+    form.append('text', text);
+    form.append('disable_web_page_preview', 'true');
+    return callApi('sendMessage', form);
+  });
+
+  return {
+    getMe, sendBlob, sendFile, sendMessage,
+  };
 };
 
 module.exports = { createTelegramClient };

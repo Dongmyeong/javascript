@@ -1,25 +1,13 @@
 // Polls the watch directory on an interval, finds new/finished recording files
 // and sends them to Telegram. Polling (rather than fs.watch) is used because it
 // is far more reliable on Android/Termux and across network/SD-card storage.
+// Files larger than the Telegram upload limit are split into parts.
 
 const fs = require('fs');
 const path = require('path');
 
-const formatSize = (bytes) => {
-  const units = ['B', 'KB', 'MB', 'GB'];
-  let value = bytes;
-  let unit = 0;
-  while (value >= 1024 && unit < units.length - 1) {
-    value /= 1024;
-    unit += 1;
-  }
-  return `${value.toFixed(value >= 10 || unit === 0 ? 0 : 1)}${units[unit]}`;
-};
-
-const renderCaption = (template, filePath, stat) => template
-  .replace(/\{name\}/g, path.basename(filePath))
-  .replace(/\{size\}/g, formatSize(stat.size))
-  .replace(/\{date\}/g, new Date(stat.mtimeMs).toLocaleString());
+const { formatSize, renderCaption } = require('./format');
+const { buildParts, reconstructHint } = require('./splitter');
 
 // Recursively list files under `dir` (or just the top level when not recursive).
 const listFiles = (dir, recursive) => {
@@ -44,7 +32,7 @@ const listFiles = (dir, recursive) => {
 };
 
 const createWatcher = ({
-  config, telegram, state, logger,
+  config, telegram, state, logger, notifier,
 }) => {
   const hasWantedExtension = (filePath) => config.extensions
     .includes(path.extname(filePath).toLowerCase());
@@ -52,6 +40,30 @@ const createWatcher = ({
   // A file is "ready" once its size and mtime have been stable long enough,
   // which means recording has finished and it is safe to upload.
   const isStable = (stat) => Date.now() - stat.mtimeMs >= config.stableForMs;
+
+  // Send a file, automatically splitting it when it exceeds the size limit.
+  // Returns the number of parts that were sent.
+  const sendWithSplit = async (filePath, baseCaption) => {
+    const { total, parts } = await buildParts(filePath, config.maxPartBytes);
+
+    if (total === 1) {
+      await telegram.sendFile(filePath, {
+        caption: baseCaption,
+        asAudio: config.sendAsAudio,
+      });
+      return 1;
+    }
+
+    logger.info(`Splitting ${path.basename(filePath)} into ${total} parts`);
+    for (const part of parts) {
+      const caption = `${path.basename(filePath)} (part ${part.index}/${part.total}, `
+        + `${formatSize(part.blob.size)})`;
+      // Parts are raw binary slices, so always send them as documents.
+      await telegram.sendBlob(part.blob, part.name, { caption, asAudio: false });
+      logger.info(`Sent part ${part.index}/${part.total} of ${path.basename(filePath)}`);
+    }
+    return total;
+  };
 
   const processFile = async (filePath) => {
     let stat;
@@ -73,9 +85,18 @@ const createWatcher = ({
 
     const caption = renderCaption(config.captionTemplate, filePath, stat);
     logger.info(`Sending: ${path.basename(filePath)} (${formatSize(stat.size)})`);
-    await telegram.sendFile(filePath, { caption, asAudio: config.sendAsAudio });
+    const parts = await sendWithSplit(filePath, caption);
     state.markSent(filePath, stat);
     logger.info(`Sent: ${path.basename(filePath)}`);
+
+    if (notifier) {
+      await notifier.fileSent({
+        name: path.basename(filePath),
+        bytes: stat.size,
+        parts,
+        reconstructHint: reconstructHint(filePath, parts),
+      });
+    }
 
     if (config.deleteAfterSend) {
       try {
@@ -125,8 +146,9 @@ const createWatcher = ({
   };
 
   return {
-    start, stop, tick, formatSize: () => formatSize,
+    start, stop, tick,
   };
 };
 
+// Re-exported for tests / backwards compatibility.
 module.exports = { createWatcher, formatSize, renderCaption };

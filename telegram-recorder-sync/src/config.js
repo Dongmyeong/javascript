@@ -97,6 +97,13 @@ const loadConfig = ({ envPath = path.resolve(process.cwd(), '.env') } = {}) => {
     stableForMs: parseInteger(process.env.STABLE_FOR_MS, 10000),
     sendAsAudio: parseBool(process.env.SEND_AS_AUDIO, false),
     deleteAfterSend: parseBool(process.env.DELETE_AFTER_SEND, false),
+    // Telegram bot uploads are limited to 50MB; default to a safe 49MB so
+    // larger recordings are split into parts automatically.
+    maxPartBytes: parseInteger(process.env.MAX_PART_BYTES, 49 * 1024 * 1024),
+    // Telegram text notifications.
+    notifySummary: parseBool(process.env.NOTIFY_SUMMARY, true),
+    notifyOnSend: parseBool(process.env.NOTIFY_ON_SEND, false),
+    notifySplitInstructions: parseBool(process.env.NOTIFY_SPLIT_INSTRUCTIONS, true),
     captionTemplate: process.env.CAPTION_TEMPLATE || '🎙 {name} ({size})',
     stateFile: process.env.STATE_FILE
       ? path.resolve(process.env.STATE_FILE)

@@ -7,6 +7,7 @@ const { loadConfig } = require('./src/config');
 const { createTelegramClient } = require('./src/telegram');
 const { createState } = require('./src/state');
 const { createWatcher } = require('./src/watcher');
+const { createNotifier } = require('./src/notifier');
 const logger = require('./src/logger');
 
 const main = async () => {
@@ -38,18 +39,26 @@ const main = async () => {
   }
 
   const state = createState(config.stateFile);
+  const notifier = createNotifier({ telegram, config, logger });
   const watcher = createWatcher({
-    config, telegram, state, logger,
+    config, telegram, state, logger, notifier,
   });
 
-  const shutdown = (signal) => {
+  let shuttingDown = false;
+  const shutdown = async (signal) => {
+    if (shuttingDown) {
+      return;
+    }
+    shuttingDown = true;
     logger.info(`Received ${signal}, stopping...`);
     watcher.stop();
+    await notifier.summary();
     process.exit(0);
   };
-  process.on('SIGINT', () => shutdown('SIGINT'));
-  process.on('SIGTERM', () => shutdown('SIGTERM'));
+  process.on('SIGINT', () => { shutdown('SIGINT'); });
+  process.on('SIGTERM', () => { shutdown('SIGTERM'); });
 
+  await notifier.started();
   await watcher.start();
 };
 
