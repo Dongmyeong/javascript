@@ -164,6 +164,29 @@ FORWARD_URL=https://your-tunnel.example.com/telegram-file-id?token=xxxxx
   바뀌면 `.env` 의 `FORWARD_URL` 을 새 주소로 고치고 다시 실행하세요.
 - `FORWARD_URL` 의 토큰은 비밀입니다. `.env`(gitignore됨)에만 두고 외부에 노출하지 마세요.
 
+## 20MB 초과 파일 — 수신기로 직접 청크 업로드
+
+봇은 **다운로드가 파일당 20MB까지만** 되기 때문에, 그보다 큰 녹음은 수신기가
+텔레그램에서 가져올 수 없습니다. `CHUNK_UPLOAD_URL` 을 설정하면 그런 파일은
+**텔레그램을 거치지 않고** 수신기로 바이너리 조각을 직접 POST합니다. 각 조각은
+다음 쿼리 파라미터를 가집니다:
+
+```
+POST <CHUNK_UPLOAD_URL>&upload_id=<고유ID>&filename=<원본명>&index=<0부터>&total=<총조각수>
+Body: 조각 바이너리 (application/octet-stream)
+```
+
+- 같은 원본 파일의 모든 조각은 같은 `upload_id` 를 가지며, 수신기는 마지막 조각이
+  도착하면 자동으로 원본으로 합칩니다.
+- 기준 크기(`CHUNK_THRESHOLD_BYTES`, 기본 ~19MB)를 넘는 파일만 이 경로를 씁니다.
+  그 이하 파일은 평소대로 텔레그램으로 전송됩니다.
+- 조각 1개 크기는 `CHUNK_SIZE_BYTES`(기본 ~18MB)로 조절합니다. 터널의 요청 본문
+  한도보다 작게 두세요.
+
+```
+CHUNK_UPLOAD_URL=https://your-tunnel.example.com/upload-chunk?token=xxxxx
+```
+
 ## 알림 / 요약
 
 - 시작 시: `▶️ recorder-sync 시작 …`

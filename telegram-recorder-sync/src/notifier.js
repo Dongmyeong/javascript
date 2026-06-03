@@ -25,13 +25,20 @@ const createNotifier = ({ telegram, config, logger }) => {
 
   // Called after a file (and all of its parts) has been sent successfully.
   const fileSent = async ({
-    name, bytes, parts, reconstructHint,
+    name, bytes, parts, channel = 'telegram', reconstructHint,
   }) => {
     stats.files += 1;
     stats.bytes += bytes;
     stats.parts += parts;
 
-    if (parts > 1 && config.notifySplitInstructions) {
+    if (channel === 'chunk') {
+      if (config.notifySplitInstructions) {
+        await safeSend(
+          `📦 ${name} (${formatSize(bytes)}) 은 20MB 초과라 ${parts}개 조각으로 `
+          + '수신기에 직접 업로드했습니다.',
+        );
+      }
+    } else if (parts > 1 && config.notifySplitInstructions) {
       await safeSend(
         `📎 ${name} 은 50MB 제한으로 ${parts}개로 분할 전송되었습니다.\n`
         + `복원(터미널): ${reconstructHint}`,

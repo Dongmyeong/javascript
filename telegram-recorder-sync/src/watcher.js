@@ -32,7 +32,7 @@ const listFiles = (dir, recursive) => {
 };
 
 const createWatcher = ({
-  config, telegram, state, logger, notifier, forwarder,
+  config, telegram, state, logger, notifier, forwarder, chunkUploader,
 }) => {
   const hasWantedExtension = (filePath) => config.extensions
     .includes(path.extname(filePath).toLowerCase());
@@ -89,17 +89,31 @@ const createWatcher = ({
       return; // Still being written; try again next tick.
     }
 
+    const name = path.basename(filePath);
     const caption = renderCaption(config.captionTemplate, filePath, stat);
-    logger.info(`Sending: ${path.basename(filePath)} (${formatSize(stat.size)})`);
-    const parts = await sendWithSplit(filePath, caption);
+    logger.info(`Sending: ${name} (${formatSize(stat.size)})`);
+
+    let parts;
+    let channel;
+    // Files larger than the Telegram bot download limit can't be fetched by the
+    // receiver from Telegram, so upload them directly to it as binary chunks.
+    if (chunkUploader && chunkUploader.enabled && stat.size > config.chunkThresholdBytes) {
+      parts = await chunkUploader.upload(filePath, config.chunkSizeBytes);
+      channel = 'chunk';
+      logger.info(`Chunk-uploaded ${name} to receiver (${parts} chunks)`);
+    } else {
+      parts = await sendWithSplit(filePath, caption);
+      channel = 'telegram';
+      logger.info(`Sent: ${name}`);
+    }
     state.markSent(filePath, stat);
-    logger.info(`Sent: ${path.basename(filePath)}`);
 
     if (notifier) {
       await notifier.fileSent({
-        name: path.basename(filePath),
+        name,
         bytes: stat.size,
         parts,
+        channel,
         reconstructHint: reconstructHint(filePath, parts),
       });
     }

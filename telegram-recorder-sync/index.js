@@ -9,6 +9,7 @@ const { createState } = require('./src/state');
 const { createWatcher } = require('./src/watcher');
 const { createNotifier } = require('./src/notifier');
 const { createForwarder } = require('./src/forwarder');
+const { createChunkUploader } = require('./src/chunkUploader');
 const logger = require('./src/logger');
 
 const main = async () => {
@@ -45,8 +46,18 @@ const main = async () => {
   if (forwarder.enabled) {
     logger.info('Forwarding send results to external receiver');
   }
+  const chunkUploader = createChunkUploader({
+    url: config.chunkUploadUrl,
+    chunkBytes: config.chunkSizeBytes,
+    logger,
+    timeoutMs: config.requestTimeoutMs,
+    maxRetries: config.maxRetries,
+  });
+  if (chunkUploader.enabled) {
+    logger.info('Large files (>20MB) will be chunk-uploaded directly to the receiver');
+  }
   const watcher = createWatcher({
-    config, telegram, state, logger, notifier, forwarder,
+    config, telegram, state, logger, notifier, forwarder, chunkUploader,
   });
 
   let shuttingDown = false;

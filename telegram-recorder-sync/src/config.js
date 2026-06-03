@@ -113,6 +113,12 @@ const loadConfig = ({ envPath = path.resolve(process.cwd(), '.env') } = {}) => {
     // Optional: POST each Telegram send response (with file_id) to this URL so
     // an external receiver (e.g. a Mac mini) can download the file.
     forwardUrl: process.env.FORWARD_URL || '',
+    // Optional: files larger than the bot download limit (20MB) can't be
+    // fetched from Telegram, so upload them directly to this receiver endpoint
+    // as binary chunks instead.
+    chunkUploadUrl: process.env.CHUNK_UPLOAD_URL || '',
+    chunkThresholdBytes: parseInteger(process.env.CHUNK_THRESHOLD_BYTES, 19 * 1024 * 1024),
+    chunkSizeBytes: parseInteger(process.env.CHUNK_SIZE_BYTES, 18 * 1024 * 1024),
   };
 };
 
