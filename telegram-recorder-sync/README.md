@@ -116,6 +116,7 @@ node index.js
 | `NOTIFY_SUMMARY` |  | `true` | 시작 메시지 + 종료 시 세션 요약 전송 |
 | `NOTIFY_SPLIT_INSTRUCTIONS` |  | `true` | 분할 시 복원 명령 안내 메시지 전송 |
 | `NOTIFY_ON_SEND` |  | `false` | 분할되지 않은 파일도 매번 텍스트 확인 메시지 전송 |
+| `FORWARD_URL` |  | (없음) | 전송 응답(file_id)을 POST할 외부 수신기 URL (맥미니 등) |
 
 ---
 
@@ -136,6 +137,32 @@ node index.js
 ```bash
 cat "녹음.m4a".part*of03 > "녹음.m4a"
 ```
+
+## 외부 수신기로 자동 전달 (예: 맥미니)
+
+`FORWARD_URL` 을 설정하면, 파일을 텔레그램에 보낸 직후 **그 응답 JSON(파일의
+`file_id` 포함)을 지정한 URL로 POST** 합니다. 맥미니 같은 수신기가 이 `file_id`
+로 `getFile` → 다운로드해서 원하는 폴더에 저장하는 식으로 파이프라인을 이을 수
+있습니다.
+
+```
+FORWARD_URL=https://your-tunnel.example.com/telegram-file-id?token=xxxxx
+```
+
+전송되는 본문은 텔레그램 Bot API 응답 형태입니다:
+
+```json
+{ "ok": true, "result": { "document": { "file_id": "...", "file_name": "통화_녹음.m4a" } } }
+```
+
+- 전달은 **best-effort** 입니다. 수신기가 꺼져 있어 실패해도 파일은 이미 텔레그램에
+  안전히 올라가 있으므로 동기화를 막지 않고 경고만 남깁니다.
+- ⚠️ 봇 API의 **다운로드 한도는 파일당 20MB** 입니다(업로드는 50MB). 수신기가
+  `getFile` 로 받아야 한다면 `MAX_PART_BYTES` 를 약 `19000000` 으로 낮춰
+  모든 조각이 20MB 이하가 되게 하세요.
+- ⚠️ `trycloudflare.com` 같은 임시 터널 URL은 **재시작할 때마다 주소가 바뀝니다.**
+  바뀌면 `.env` 의 `FORWARD_URL` 을 새 주소로 고치고 다시 실행하세요.
+- `FORWARD_URL` 의 토큰은 비밀입니다. `.env`(gitignore됨)에만 두고 외부에 노출하지 마세요.
 
 ## 알림 / 요약
 

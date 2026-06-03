@@ -8,6 +8,7 @@ const { createTelegramClient } = require('./src/telegram');
 const { createState } = require('./src/state');
 const { createWatcher } = require('./src/watcher');
 const { createNotifier } = require('./src/notifier');
+const { createForwarder } = require('./src/forwarder');
 const logger = require('./src/logger');
 
 const main = async () => {
@@ -40,8 +41,12 @@ const main = async () => {
 
   const state = createState(config.stateFile);
   const notifier = createNotifier({ telegram, config, logger });
+  const forwarder = createForwarder({ url: config.forwardUrl, logger });
+  if (forwarder.enabled) {
+    logger.info('Forwarding send results to external receiver');
+  }
   const watcher = createWatcher({
-    config, telegram, state, logger, notifier,
+    config, telegram, state, logger, notifier, forwarder,
   });
 
   let shuttingDown = false;

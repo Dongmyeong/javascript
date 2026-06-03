@@ -110,6 +110,9 @@ const loadConfig = ({ envPath = path.resolve(process.cwd(), '.env') } = {}) => {
       : path.resolve(process.cwd(), '.sent-state.json'),
     requestTimeoutMs: parseInteger(process.env.REQUEST_TIMEOUT_MS, 120000),
     maxRetries: parseInteger(process.env.MAX_RETRIES, 4),
+    // Optional: POST each Telegram send response (with file_id) to this URL so
+    // an external receiver (e.g. a Mac mini) can download the file.
+    forwardUrl: process.env.FORWARD_URL || '',
   };
 };
 

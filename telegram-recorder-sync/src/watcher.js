@@ -32,7 +32,7 @@ const listFiles = (dir, recursive) => {
 };
 
 const createWatcher = ({
-  config, telegram, state, logger, notifier,
+  config, telegram, state, logger, notifier, forwarder,
 }) => {
   const hasWantedExtension = (filePath) => config.extensions
     .includes(path.extname(filePath).toLowerCase());
@@ -47,10 +47,13 @@ const createWatcher = ({
     const { total, parts } = await buildParts(filePath, config.maxPartBytes);
 
     if (total === 1) {
-      await telegram.sendFile(filePath, {
+      const result = await telegram.sendFile(filePath, {
         caption: baseCaption,
         asAudio: config.sendAsAudio,
       });
+      if (forwarder) {
+        await forwarder.forward(result);
+      }
       return 1;
     }
 
@@ -59,7 +62,10 @@ const createWatcher = ({
       const caption = `${path.basename(filePath)} (part ${part.index}/${part.total}, `
         + `${formatSize(part.blob.size)})`;
       // Parts are raw binary slices, so always send them as documents.
-      await telegram.sendBlob(part.blob, part.name, { caption, asAudio: false });
+      const result = await telegram.sendBlob(part.blob, part.name, { caption, asAudio: false });
+      if (forwarder) {
+        await forwarder.forward(result);
+      }
       logger.info(`Sent part ${part.index}/${part.total} of ${path.basename(filePath)}`);
     }
     return total;
