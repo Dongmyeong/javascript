@@ -26,11 +26,38 @@ node receive-telegram.js
 `Connected to Telegram as @...` 가 뜨면 정상. 새 녹음이 봇에 오면 자동으로
 `OUTPUT_DIR` 에 내려받고, 조각(`.partNofM`)이 다 모이면 원본으로 합칩니다.
 
-백그라운드 상시 실행:
+백그라운드 상시 실행(임시):
 ```bash
 nohup node receive-telegram.js > ~/telegram-receiver.log 2>&1 &
 tail -f ~/telegram-receiver.log
 ```
+
+### 재부팅에도 자동 실행 (권장) — launchd
+
+`nohup` 은 맥을 재부팅하면 꺼집니다. **백그라운드 상시 + 죽으면 자동 재시작 +
+부팅 시 자동 시작**을 원하면 launchd 에이전트로 등록하세요:
+
+```bash
+cd ~/javascript/mac-receiver
+cp .env.example .env && nano .env     # 토큰 입력 (한 번만)
+sh install-launchd.sh
+```
+
+설치 스크립트가 하는 일:
+- `node` 절대경로를 자동으로 찾아 plist 생성
+- 수동 실행 중이던 인스턴스를 정리(중복 폴링 방지)
+- `~/Library/LaunchAgents/com.dongmyeong.telegram-receiver.plist` 등록 후 즉시 시작
+- `KeepAlive`(죽으면 재시작) + `RunAtLoad`(로그인/부팅 시 시작)
+
+확인 / 로그 / 제거:
+```bash
+launchctl list | grep telegram-receiver     # 등록 확인
+tail -f ~/telegram-receiver.log             # 로그
+sh uninstall-launchd.sh                      # 제거
+```
+
+> ⚠️ 헤드리스(모니터 없는) 맥미니는 **자동 로그인**을 켜두어야 재부팅 후 사용자
+> 세션이 떠서 에이전트가 시작됩니다: 시스템 설정 → 사용자 및 그룹 → 자동 로그인.
 
 ### 설정 (.env)
 | 변수 | 필수 | 기본값 | 설명 |
