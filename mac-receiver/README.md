@@ -1,8 +1,59 @@
-# mac-receiver / reassemble-parts
+# mac-receiver
 
-맥미니의 **inbound 폴더**를 감시하다가, 폰에서 분할 전송된 조각 파일
-(`이름.m4a.part<번호>of<총개수>`)이 **다 모이면 자동으로 원본으로 합쳐주는**
-작은 스크립트입니다. 의존성 0개, Node.js 18+ 만 있으면 됩니다.
+맥미니에서 **텔레그램으로 들어온 녹음을 직접 받아 합쳐주는** 수신기입니다.
+의존성 0개, Node.js 18+ 만 있으면 됩니다. 두 가지 도구가 있습니다:
+
+1. **`receive-telegram.js` (권장, 메인)** — 텔레그램을 직접 폴링해 새 녹음을
+   inbound로 내려받고, 분할 조각을 원본으로 합칩니다. **트런넬(cloudflare 등)
+   불필요**, 봇 토큰만 있으면 됩니다.
+2. **`reassemble-parts.js`** — 이미 inbound에 들어온 `이름.m4a.partNofM` 조각만
+   합치는 보조 스크립트(다른 경로로 조각이 들어올 때 사용).
+
+---
+
+## receive-telegram.js — 텔레그램 직접 수신 (권장)
+
+폰이 모든 녹음을 텔레그램 봇으로 보내고(>20MB는 19MB 이하로 분할), 맥은 이
+스크립트로 봇에서 직접 가져옵니다. trycloudflare 주소가 바뀌어 깨지는 문제가
+없습니다.
+
+```bash
+cp .env.example .env
+nano .env            # TELEGRAM_BOT_TOKEN, OUTPUT_DIR 입력
+node receive-telegram.js
+```
+
+`Connected to Telegram as @...` 가 뜨면 정상. 새 녹음이 봇에 오면 자동으로
+`OUTPUT_DIR` 에 내려받고, 조각(`.partNofM`)이 다 모이면 원본으로 합칩니다.
+
+백그라운드 상시 실행:
+```bash
+nohup node receive-telegram.js > ~/telegram-receiver.log 2>&1 &
+tail -f ~/telegram-receiver.log
+```
+
+### 설정 (.env)
+| 변수 | 필수 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `TELEGRAM_BOT_TOKEN` | ✅ | — | 폰이 보내는 그 봇의 토큰 |
+| `OUTPUT_DIR` |  | `/Users/donoh/.openclaw/media/inbound` | 저장 폴더 |
+| `OFFSET_FILE` |  | `<OUTPUT_DIR>/.telegram-offset` | 마지막 처리 위치 저장 |
+| `POLL_TIMEOUT_SEC` |  | `30` | 롱폴 대기(초) |
+| `STABLE_FOR_MS` |  | `5000` | 조각 안정 대기(ms) |
+
+### ⚠️ 주의
+- 봇 하나당 **getUpdates 소비자는 동시에 하나만** 가능합니다. 기존에 텔레그램을
+  폴링하던 다른 수신기가 있으면 **끄세요**(안 그러면 서로 업데이트를 뺏어갑니다).
+  파일 id를 직접 받던(POST 방식) 기존 수신기는 폴링을 안 하므로 충돌하지 않습니다.
+- 봇 API **다운로드 한도는 파일당 20MB** 입니다. 그래서 폰에서 `MAX_PART_BYTES`
+  를 `19000000` 으로 두어 모든 조각이 20MB 이하가 되게 해야 합니다.
+
+---
+
+## reassemble-parts.js — 조각 합치기만 (보조)
+
+이미 inbound에 들어와 있는 조각 파일(`이름.m4a.part<번호>of<총개수>`)이
+**다 모이면 자동으로 원본으로 합쳐주는** 스크립트입니다.
 
 ## 왜 필요한가
 
