@@ -101,9 +101,18 @@ const run = async () => {
       // eslint-disable-next-line no-await-in-loop
       updates = await telegram.getUpdates(offset, pollTimeoutSec);
     } catch (err) {
-      logger.error(`getUpdates failed: ${err.message}`);
-      // eslint-disable-next-line no-await-in-loop
-      await new Promise((r) => { setTimeout(r, 5000); });
+      // "Conflict" means another process is polling this same bot. Wait longer
+      // (the other poller's long-poll has to time out) and retry automatically.
+      if (/Conflict/i.test(err.message)) {
+        logger.error('Conflict: another process is already polling this bot. '
+          + 'Stop the other receiver (or use a dedicated bot token). Retrying in 15s...');
+        // eslint-disable-next-line no-await-in-loop
+        await new Promise((r) => { setTimeout(r, 15000); });
+      } else {
+        logger.error(`getUpdates failed: ${err.message}`);
+        // eslint-disable-next-line no-await-in-loop
+        await new Promise((r) => { setTimeout(r, 5000); });
+      }
       continue;
     }
 
