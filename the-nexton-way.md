@@ -203,12 +203,17 @@ NEXTON은 이 분쟁을 하나의 원칙으로 차단한다. **서로 다른 위
 - 장기 목표 구조: Managing Partner 3인 각 약 31–32% / COO 약 5–7%. 후발 Managing Partner도 장기적으로 동일 지분 구조를 지향한다.
 - Equity Vesting은 5년으로 한다. 세부 조건은 Founders Agreement에서 정한다(`nexton-founders-termsheet.md`).
 
-### Carry — House Capital 선취와 유닛제
+### Carry — 3단 Waterfall과 유닛제
 
-Carry의 배분은 두 단계다.
+Carry의 배분은 세 단계 폭포(Waterfall)다.
 
 1. **House Capital 선취 20%.** Carry 발생 시 총액의 20%를 먼저 House Capital로 적립한다. 이것은 회사의 이익이 아니라 하우스의 미래다 — 다음 펀드의 GP Commit, 운영 버퍼, 그리고 어떤 상황에서도 원칙대로 행동할 수 있게 하는 독립성의 재원이다.
-2. **People Pool 80%.** 나머지 80%는 하우스를 운영하는 사람들 — Managing Partner, Partner, Investment Team, COO와 Management Team — 에게 배분한다.
+2. **Partner Capital 선취 20%.** 이어서 총액의 20%를 Partner Capital로 적립한다. 적립분은 Managing Partner와 Partner의 **개인별 계정**에 파트너 유닛 비례로 귀속된다. Managing Partner와 Partner는 Partner Capital을 부담하는 것이 **원칙**이다 — 적립은 선택이 아니라 구조이며, 분배 후에 각자 알아서 떼는 것이 아니라 분배 전에 하우스가 떼어 적립한다.
+3. **People Pool 60%.** 나머지 60%를 하우스를 운영하는 모든 사람 — Managing Partner, Partner, Investment Team, COO와 Management Team — 에게 유닛제로 배분한다.
+
+**대칭의 원리.** 이 구조에서 House Capital과 Partner Capital은 언제나 **같은 금액**으로 쌓인다(각각 Carry 총액의 20%). 미래 펀드의 GP Commit을 하우스와 파트너들이 같은 무게로 지탱한다는 원칙이 산식으로 보장되는 것이다. 참고로, 분배 후 개인 적립률 방식(수령액의 20% 적립)으로는 이 대칭이 산술적으로 불가능하다 — 파트너 그룹이 Pool 전체를 받아도 적립액은 총 Carry의 16%에 그친다. 그래서 적립은 분배 이전 단계에 둔다.
+
+**왜 파트너의 유닛이 더 높은가.** 유닛 프리미엄(MP 10, Partner 6 vs Principal 3)의 근거는 직급이 아니라 **부담**이다. Partner Capital을 부담하는 사람이 더 높은 유닛을 받는 것이 정당하다. Principal 이하 투자인력과 Management Team은 Partner Capital을 부담하지 않으므로 유닛이 낮고, 대신 수령액 전부가 가처분이다. 더 큰 몫에는 더 큰 부담이, 부담 없는 몫에는 온전한 유동성이 대응한다.
 
 **왜 그룹별 비율이 아니라 유닛제인가.** 그룹별 고정 비율(예: "MP Pool 60%")은 인원 변화를 반영하지 못한다. 2인일 때 정한 60%는 파트너가 5인이 되어도 60%이고, 그때마다 그룹 경계를 재협상해야 한다 — 그리고 그 재협상이 바로 우리가 금지한 공로 계산의 입구가 된다. NEXTON은 그룹이 아니라 **사람에게 유닛을 부여**한다.
 
@@ -233,30 +238,30 @@ Carry의 배분은 두 단계다.
 - **MP 유닛은 서로 항상 동일하다.** 균등 원칙(제3장)의 구현이다.
 - **유닛 테이블은 각 펀드 결성 시점에 MP Meeting 만장일치로 확정하고, 해당 펀드의 존속 기간 중 변경하지 않는다.** 사후 재협상 금지(헌법 제20조)의 구현이다. 딜이 잘된 뒤에 유닛을 다투는 일은 구조적으로 불가능해야 한다.
 - 펀드 기간 중 합류할 인재를 위해 총 유닛의 10% 내외를 **예비 유닛(Reserve)** 으로 남겨둘 수 있다. 미사용 예비 유닛은 전체에 비례 환원한다. `[협의]`
+- **Partner Capital 선취분(20%)의 파트너 간 귀속은 MP·Partner 유닛 비례를 기본으로 한다.**
 
-**예시.** 발생 Carry 200억 원. 구성: MP 2인, COO 1인, Principal 1인, Director 1인이라 가정하면 —
+**예시.** 발생 Carry 200억 원. 구성: MP 2인, COO(Partner) 1인, Principal 1인, Director 1인이라 가정하면 — 전체 유닛 28.5 (10+10+4+3+1.5), 파트너 유닛 24 (10+10+4).
 
 | 구분 | 계산 | 금액 |
 |---|---|---|
 | House Capital (선취 20%) | 200억 × 20% | 40억 원 |
-| People Pool (80%) | 200억 × 80% | 160억 원 |
-| MP 각각 | 10 ÷ 28.5 × 160억 | 약 56억 원 |
-| COO | 4 ÷ 28.5 × 160억 | 약 22억 원 |
-| Principal | 3 ÷ 28.5 × 160억 | 약 17억 원 |
-| Director | 1.5 ÷ 28.5 × 160억 | 약 8억 원 |
+| Partner Capital (선취 20%) | 200억 × 20% | 40억 원 — MP 각 약 16.7억, COO 약 6.7억 (유닛 10:10:4 비례 적립) |
+| People Pool (60%) | 200억 × 60% | 120억 원 |
+| MP 각각 (현금 수령) | 10 ÷ 28.5 × 120억 | 약 42억 원 |
+| COO (현금 수령) | 4 ÷ 28.5 × 120억 | 약 17억 원 |
+| Principal (현금 수령) | 3 ÷ 28.5 × 120억 | 약 13억 원 |
+| Director (현금 수령) | 1.5 ÷ 28.5 × 120억 | 약 6억 원 |
 
-(전체 유닛 = 10+10+4+3+1.5 = 28.5. 인원이 늘면 분모만 커진다.)
+파트너의 총 경제적 몫은 현금 수령 + Partner Capital 적립의 합이다. MP 각각 약 59억(이 중 적립 16.7억), COO 약 24억(이 중 적립 6.7억). 파트너 개인 기준의 실효 적립 강도는 총 몫의 약 28% 수준이며, 이것이 유닛 프리미엄의 대가다. 인원이 늘면 분모만 커진다 — 구조는 그대로다.
 
 ### Partner Capital — 하우스의 미래를 함께 지탱하는 자본
 
-Partner가 받은 Carry는 소비로 끝나지 않는다. 그 일부는 **Partner Capital**로 적립되어, House Capital과 함께 미래 펀드의 GP Commit을 지탱하는 두 번째 기둥이 된다. 하우스의 다음 펀드는 외부 자본이 아니라 하우스 자신 — 회사(House Capital)와 파트너들(Partner Capital) — 이 먼저 믿고 출자하는 펀드여야 한다.
+하우스의 다음 펀드는 외부 자본이 아니라 하우스 자신 — 회사(House Capital)와 파트너들(Partner Capital) — 이 먼저 믿고 출자하는 펀드여야 한다. LP에게 이보다 강한 신호는 없다.
 
-적립은 강제가 아니다. 그러나 원칙은 있다.
-
-1. **목표에서 역산한다.** 적립률을 임의로 정하지 않는다. 차기 펀드의 GP Commit 목표(통상 펀드 약정액의 1~2% `[협의]`)를 House Capital과 Partner Capital이 분담하고(기본 50 : 50 `[협의]`), 파트너 간 분담은 유닛 비례를 기본으로 한다. 필요액이 정해지면 각자의 적립 목표가 나온다.
-2. **기본 적립률.** 목표 역산과 별개의 하한으로, Partner는 Carry 세후 수령액의 **3분의 1 이상** 적립을 기본값(default)으로 한다. 권장은 2분의 1이다. 세금·유동성 등 개인 사정이 있으면 MP Meeting과 협의하여 조정한다 — 조정은 허용되고, 침묵 속의 미적립은 허용되지 않는다.
-3. **소유는 개인, 관리는 하우스.** Partner Capital은 개인별 계정으로 관리하며 소유권은 개인에게 있다. 하우스는 계정 관리와 출자 기회 연결만 담당한다.
-4. **강제하지 않되, 기억한다.** GP Commit 참여는 의무가 아니라 House에 대한 Commitment의 표현이다(제9장 — 신뢰의 위험에는 기회의 보상이 대응한다). 참여의 이력은 다음 기회 — SPC 공동투자, 차기 펀드 유닛, Managing Partner Appointment — 의 배분에 자연스럽게 반영된다.
+1. **부담은 원칙이다.** Managing Partner와 Partner는 Partner Capital을 부담하는 것이 원칙이다. Waterfall 선취 구조가 이 원칙을 자동으로 이행한다 — 별도의 결심이나 독촉이 필요 없다. 예외(적립 유예·감액)는 MP Meeting 만장일치로만 허용한다.
+2. **하우스와 같은 무게로.** Partner Capital의 적립 속도는 House Capital과 동일하다(각 Carry의 20%). 미래를 하우스에만 미루지도, 파트너에게만 지우지도 않는다.
+3. **소유는 개인, 관리는 하우스, 용도는 미래.** Partner Capital은 개인별 계정으로 관리하며 소유권은 개인에게 있다. 하우스는 계정 관리와 출자 연결을 담당한다. 용도는 차기 펀드 GP Commit 출자가 우선이며, GP Commit 소요가 적립액을 초과하면 MP Meeting에서 추가 분담을 결정하고, 남으면 다음 펀드로 이월한다.
+4. **부담하지 않는 사람에게는 기회로.** Principal 이하 구성원은 Partner Capital 부담이 없는 대신, SPC 공동투자 등 참여 기회를 신뢰의 축적에 따라 부여받는다(제11장 — 기회의 사다리). Partner Capital 부담은 Partner 입회와 함께 시작되는 것이며, 그 자체가 입회의 무게다.
 
 ### GP Commit과 SPC
 
@@ -417,7 +422,7 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 
 **제18조 (House Capital)** House Capital은 House의 지속성과 독립성을 위한 장기 자본이다. House Capital은 Carry의 일부를 선취 적립하여 조성한다.
 
-**제19조 (Partner Capital)** Partner Capital은 Partner와 Managing Partner가 House와 공동 운명을 실천하기 위해 축적하는 자본이다. Partner Capital은 House Capital과 함께 미래 펀드의 GP Commit을 지탱한다.
+**제19조 (Partner Capital)** Partner Capital은 Partner와 Managing Partner가 House와 공동 운명을 실천하기 위해 축적하는 자본이다. Managing Partner와 Partner는 Partner Capital의 적립을 원칙으로 하며, Partner Capital은 House Capital과 같은 무게로 미래 펀드의 GP Commit을 지탱한다.
 
 **제20조 (Carry)** Carry는 Ownership의 권리가 아니라 현재 House를 운영하는 Membership의 성과보상이다. Carry는 특정 거래의 공로를 이유로 사후 조정하지 않는다.
 
@@ -532,7 +537,7 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 | Carry | 현재 Membership의 성과보상. Ownership의 권리가 아님 (헌법 제20조) |
 | GP Commit | House와 Membership의 장기적 Commitment를 표현하는 공동 자본 (헌법 제21조) |
 | House Capital | 하우스 장기 자본. Carry의 20% 선취로 조성 (헌법 제18조, 제10장) |
-| Partner Capital | Partner가 Carry 적립으로 축적하는 자본. House Capital과 함께 미래 GP Commit을 지탱 (헌법 제19조, 제10장) |
+| Partner Capital | Carry의 20% 선취로 조성되는 MP·Partner의 개인별 적립 자본. House Capital과 같은 무게로 미래 GP Commit을 지탱 (헌법 제19조, 제10장) |
 | House Builder | 거래보다 사람을, 성과보다 원칙을 남기는 사람 (제13장) |
 | Investment Doctrine | 변하지 않는 투자 원칙 — Control 원칙, 연속된 책임, The Three Questions (제7장) |
 | The Three Questions | 투자 통과 요건: 글로벌 확장성 · 현금흐름의 질 · 경영권 (제7장) |
@@ -546,7 +551,8 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 - **Edition 1.2**: 설립 확정 사항 반영(45/45/10, Co-CEO 2인 + COO/Equity Partner, 프로젝트 펀드 우선). Investment Doctrine 신설. Founders Term Sheet 분리.
 - **Edition 2.0**: 산문 중심 재집필. 서문 신설, 원칙마다 "막으려는 실패" 명시.
 - **Edition 3.0 (구조 전면 재편)**: 초안 유래의 Book 0~5 체계를 폐기하고 독자의 질문을 따르는 5부 구성으로 재편(만드는 것 → 함께 일하는 방식 → 투자 → 분배 → 승계). 철학-헌법 중복 서술 제거: 산문은 "읽는 층", 헌법은 "찾는 층"으로 역할 분리. 신설 2개 장 — 제4장 "불일치와 갈등"(반대의 의무, disagree & commit, "내가 말했잖아" 금지, 교착은 관계의 신호), 제5장 "The Firm"(COO와 미들백오피스를 신뢰 엔진으로 정의). Seven Prohibitions를 결말부 총정리로 이동. 관리용 메타데이터를 부록으로 격리.
-- **Edition 3.1**: 파트너십 체계 재정의 — Career의 끝은 Principal, Partner는 입회(지분 필수), "Equity Partner" 직함 폐지, Partner 중 지명이 Managing Partner. 대표이사 체제를 공동대표에서 **각자 대표**로 변경(대외 단독 대표권 + 대내 프로세스 우선). Carry 구조 개편 — House Capital 20% 선취 + People Pool 80% **유닛제**(그룹 비율제의 인원 미반영 문제 해소, 펀드 결성 시 확정·사후 변경 금지). **Partner Capital 적립 원칙** 신설(목표 역산 + 기본 1/3 적립, 비강제·기회 반영).
+- **Edition 3.1**: 파트너십 체계 재정의 — Career의 끝은 Principal, Partner는 입회(지분 필수), "Equity Partner" 직함 폐지, Partner 중 지명이 Managing Partner. 대표이사 체제를 공동대표에서 **각자 대표**로 변경(대외 단독 대표권 + 대내 프로세스 우선). Carry 유닛제 도입(그룹 비율제의 인원 미반영 문제 해소).
+- **Edition 3.2**: Carry를 **3단 Waterfall**로 확정 — House Capital 20% 선취 → **Partner Capital 20% 선취**(MP·Partner 개인 계정, 파트너 유닛 비례) → People Pool 60% 유닛제. 분배 후 개인 적립 방식으로는 하우스-파트너 적립액 대칭이 산술적으로 불가능함을 확인하고 선취 구조로 해결. MP·Partner의 Partner Capital 부담을 원칙으로 명문화(헌법 제19조), 유닛 프리미엄의 근거를 부담으로 정의.
 
 **남은 작업.**
 
