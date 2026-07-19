@@ -105,7 +105,7 @@
 
 ## 협의 필요 항목 요약 (체크리스트)
 
-- [ ] 펀드별 Carry 유닛 테이블 확정 (기본안: MP 10 · Partner 6 · COO 4 · Principal 3 · Director 1.5)
+- [ ] 펀드별 Carry 유닛 테이블 확정 (기본안: MP 10 · Partner 6 · Principal 3 · COO 2 · Director 1.5 — COO·Management 유닛은 Principal을 넘지 않는 것이 원칙)
 - [ ] 예비 유닛(Reserve) 규모 (권고: 총 유닛의 10% 내외)
 - [ ] GP Commit 목표율 (펀드 약정액의 1~2%) — 확정 구조: House Capital·Partner Capital 동일 요율 선취가 공동 재원
 - [ ] 목표잔고 연동 선취율의 파라미터 (목표 배수 150%, 운영 버퍼 6개월, 구간 경계, 선취 중단 기준 200%)
