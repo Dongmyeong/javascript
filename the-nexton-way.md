@@ -6,7 +6,7 @@
 
 ## 서문 — 이 책을 읽는 세 사람에게
 
-세 사람이 회사를 시작한다. 두 사람은 공동대표로서 투자를 이끌고, 한 사람은 관리이사로서 하우스의 기반을 지킨다. 지금 우리는 서로를 신뢰하고, 같은 그림을 보고 있으며, 어떤 문서도 필요하지 않다고 느낀다.
+세 사람이 회사를 시작한다. 두 사람은 대표이사로서 투자를 이끌고, 한 사람은 관리이사로서 하우스의 기반을 지킨다. 지금 우리는 서로를 신뢰하고, 같은 그림을 보고 있으며, 어떤 문서도 필요하지 않다고 느낀다.
 
 이 책은 바로 그 순간, 문서가 필요 없다고 느끼는 지금 쓰여야 한다.
 
@@ -107,8 +107,8 @@ NEXTON은 개인의 성공을 극대화하기 위한 조직이 아니다. House�
 
 이 철학은 구조로 표현되어 있다.
 
-- **COO는 관리자가 아니라 Equity Partner다.** 지분 10%의 의미는 명확하다. Firm을 지키는 일은 하우스의 성공을 소유할 자격이 있는 일이다.
-- **Firm Management Pool.** Carry의 일부(운용역 Pool의 10%)는 투자 성과가 아니라 Firm 인프라 — 펀드 관리, 준법, 감사 대응, LP 실사 지원, 재무·회계 — 에 배분된다. 신뢰 엔진도 성과의 지분을 갖는다.
+- **COO는 관리자가 아니라 Partner다.** 지분 10%의 의미는 명확하다. Firm을 지키는 일은 하우스의 성공을 소유할 자격이 있는 일이다.
+- **신뢰 엔진도 Carry에 참여한다.** COO와 Management Team은 유닛제(제10장)를 통해 Carry에 참여한다. 펀드 관리, 준법, 감사 대응, LP 실사 지원, 재무·회계는 투자 행위가 아니지만, 하우스의 성과는 이 기여 없이 존재하지 않기 때문이다.
 - **권한의 분리는 견제가 아니라 보호다.** COO는 전략 예산의 관리자이되 승인권자가 아니다. 돈을 쓰는 사람과 기록·관리하는 사람을 분리하는 것은 내부통제의 기본이며, 이 분리는 COO를 의심해서가 아니라 모두를 보호하기 위해 존재한다. 같은 이유로 COO는 IC에 배석하되 의결하지 않는다 — 투자의 책임과 운영의 책임을 섞지 않는 것이다.
 
 투자 엔진이 하우스를 성장시키고, 신뢰 엔진이 하우스를 존속시킨다. 어느 쪽도 다른 쪽 없이는 의미가 없다.
@@ -198,26 +198,65 @@ NEXTON은 이 분쟁을 하나의 원칙으로 차단한다. **서로 다른 위
 ### 지분 (Equity)
 
 - Equity는 Ownership을 표현하며, 개별 거래 기여의 보상이 아니다. 지분은 소유권이며 노동의 대가가 아니다.
-- **설립 확정 구조: 공동창업자(Managing Partner) 각 45% / 관리이사(COO·Equity Partner) 10%.**
+- **설립 확정 구조: 공동창업자(Managing Partner) 각 45% / 관리이사(COO·Partner) 10%.**
 - 신규 파트너는 구주 매매(secondary)가 아니라 **신주 발행**으로 진입한다. 기존 주주는 비례 희석을 수용한다.
 - 장기 목표 구조: Managing Partner 3인 각 약 31–32% / COO 약 5–7%. 후발 Managing Partner도 장기적으로 동일 지분 구조를 지향한다.
 - Equity Vesting은 5년으로 한다. 세부 조건은 Founders Agreement에서 정한다(`nexton-founders-termsheet.md`).
 
-### Carry
+### Carry — House Capital 선취와 유닛제
 
-- 성과보수 배분: **운용역 60% / 회사 40%**. 회사 몫은 유보 및 배당으로 배분한다.
-- 운용역 Pool 구성: **Managing Partner Pool 60% / Investment Team Pool 30% / Firm Management Pool 10%**.
-- **Managing Partner Pool은 MP 간 균등 배분하며, 사후 재협상하지 않는다.** 공로 계산 금지(제3장)의 경제적 구현이다.
-- Investment Team Pool은 Merit의 영역이다 — Principal 2 units, Director 1 unit과 같은 차등 가중치로 동기와 retention을 만든다.
-- Firm Management Pool은 신뢰 엔진에 대한 보상이다(제5장). COO가 참여할 수 있다.
+Carry의 배분은 두 단계다.
 
-예시: 발생 Carry 200억 원, 인적 Pool 40% = 80억 원일 때 —
+1. **House Capital 선취 20%.** Carry 발생 시 총액의 20%를 먼저 House Capital로 적립한다. 이것은 회사의 이익이 아니라 하우스의 미래다 — 다음 펀드의 GP Commit, 운영 버퍼, 그리고 어떤 상황에서도 원칙대로 행동할 수 있게 하는 독립성의 재원이다.
+2. **People Pool 80%.** 나머지 80%는 하우스를 운영하는 사람들 — Managing Partner, Partner, Investment Team, COO와 Management Team — 에게 배분한다.
 
-| Pool | 비율 | 금액 |
+**왜 그룹별 비율이 아니라 유닛제인가.** 그룹별 고정 비율(예: "MP Pool 60%")은 인원 변화를 반영하지 못한다. 2인일 때 정한 60%는 파트너가 5인이 되어도 60%이고, 그때마다 그룹 경계를 재협상해야 한다 — 그리고 그 재협상이 바로 우리가 금지한 공로 계산의 입구가 된다. NEXTON은 그룹이 아니라 **사람에게 유닛을 부여**한다.
+
+> 개인의 몫 = 개인 유닛 ÷ 전체 유닛 합계 × People Pool
+
+인원이 늘면 분모가 커져 자동으로 조정된다. 그룹 경계도, 재협상도 필요 없다.
+
+**기본 유닛 테이블** (기준값, 각 펀드 결성 시 확정 `[협의]`):
+
+| 역할 | 유닛 (인당) |
+|---|---|
+| Managing Partner | 10 — 전원 동일 |
+| Partner | 6 |
+| COO | 4 |
+| Principal | 3 |
+| Director | 1.5 |
+| Associate 이하 투자인력 | 0.5–1 |
+| Management Team | 0.5–1 |
+
+**유닛제의 규칙.**
+
+- **MP 유닛은 서로 항상 동일하다.** 균등 원칙(제3장)의 구현이다.
+- **유닛 테이블은 각 펀드 결성 시점에 MP Meeting 만장일치로 확정하고, 해당 펀드의 존속 기간 중 변경하지 않는다.** 사후 재협상 금지(헌법 제20조)의 구현이다. 딜이 잘된 뒤에 유닛을 다투는 일은 구조적으로 불가능해야 한다.
+- 펀드 기간 중 합류할 인재를 위해 총 유닛의 10% 내외를 **예비 유닛(Reserve)** 으로 남겨둘 수 있다. 미사용 예비 유닛은 전체에 비례 환원한다. `[협의]`
+
+**예시.** 발생 Carry 200억 원. 구성: MP 2인, COO 1인, Principal 1인, Director 1인이라 가정하면 —
+
+| 구분 | 계산 | 금액 |
 |---|---|---|
-| Managing Partner Pool | 60% | 48억 원 |
-| Investment Team Pool | 30% | 24억 원 |
-| Firm Management Pool | 10% | 8억 원 |
+| House Capital (선취 20%) | 200억 × 20% | 40억 원 |
+| People Pool (80%) | 200억 × 80% | 160억 원 |
+| MP 각각 | 10 ÷ 28.5 × 160억 | 약 56억 원 |
+| COO | 4 ÷ 28.5 × 160억 | 약 22억 원 |
+| Principal | 3 ÷ 28.5 × 160억 | 약 17억 원 |
+| Director | 1.5 ÷ 28.5 × 160억 | 약 8억 원 |
+
+(전체 유닛 = 10+10+4+3+1.5 = 28.5. 인원이 늘면 분모만 커진다.)
+
+### Partner Capital — 하우스의 미래를 함께 지탱하는 자본
+
+Partner가 받은 Carry는 소비로 끝나지 않는다. 그 일부는 **Partner Capital**로 적립되어, House Capital과 함께 미래 펀드의 GP Commit을 지탱하는 두 번째 기둥이 된다. 하우스의 다음 펀드는 외부 자본이 아니라 하우스 자신 — 회사(House Capital)와 파트너들(Partner Capital) — 이 먼저 믿고 출자하는 펀드여야 한다.
+
+적립은 강제가 아니다. 그러나 원칙은 있다.
+
+1. **목표에서 역산한다.** 적립률을 임의로 정하지 않는다. 차기 펀드의 GP Commit 목표(통상 펀드 약정액의 1~2% `[협의]`)를 House Capital과 Partner Capital이 분담하고(기본 50 : 50 `[협의]`), 파트너 간 분담은 유닛 비례를 기본으로 한다. 필요액이 정해지면 각자의 적립 목표가 나온다.
+2. **기본 적립률.** 목표 역산과 별개의 하한으로, Partner는 Carry 세후 수령액의 **3분의 1 이상** 적립을 기본값(default)으로 한다. 권장은 2분의 1이다. 세금·유동성 등 개인 사정이 있으면 MP Meeting과 협의하여 조정한다 — 조정은 허용되고, 침묵 속의 미적립은 허용되지 않는다.
+3. **소유는 개인, 관리는 하우스.** Partner Capital은 개인별 계정으로 관리하며 소유권은 개인에게 있다. 하우스는 계정 관리와 출자 기회 연결만 담당한다.
+4. **강제하지 않되, 기억한다.** GP Commit 참여는 의무가 아니라 House에 대한 Commitment의 표현이다(제9장 — 신뢰의 위험에는 기회의 보상이 대응한다). 참여의 이력은 다음 기회 — SPC 공동투자, 차기 펀드 유닛, Managing Partner Appointment — 의 배분에 자연스럽게 반영된다.
 
 ### GP Commit과 SPC
 
@@ -248,13 +287,15 @@ NEXTON은 보상보다 기회를 분배하는 House를 지향한다. 보상을 �
 
 기회는 권리가 아니라 신뢰를 바탕으로 부여되는 자격이다. Managing Partner는 가장 높은 보상이 아니라 가장 큰 기회이다. 그리고 House는 기회를 독점하지 않고 다음 세대에게 연결한다.
 
-이 사다리를 지탱하는 구조가 **세 축의 분리**다. Career(직급), Membership(파트너십), Corporate Role(회사 직책)은 서로 다른 체계다. 직급이 오른다고 자동으로 파트너가 되는 것이 아니고, 지분이 있다고 자동으로 경영하는 것이 아니다.
+이 사다리를 지탱하는 구조가 **세 축의 분리**다. Career(직급·승진), Partnership(입회·지명), Corporate Role(회사 직책)은 서로 다른 체계다. 직급이 오른다고 자동으로 파트너가 되는 것이 아니고, 지분이 있다고 자동으로 경영하는 것이 아니다.
 
 | 축 | 구성 |
 |---|---|
-| Career Ladder | Analyst → Associate → Manager → Director → Principal → Partner → Equity Partner → Managing Partner |
-| Ownership Status | Partner / Equity Partner / Managing Partner |
-| Corporate Role | CEO / Co-CEO / CIO / COO |
+| Career Ladder (고용·승진) | Analyst → Associate → Manager → Director → Principal |
+| Partnership (입회·지명) | Partner (Admission) → Managing Partner (Appointment) |
+| Corporate Role (직책) | 각자 대표이사(CEO) / CIO / COO |
+
+Career의 끝은 Principal이다. **Partner는 승진이 아니라 입회(Admission)이며, 입회하는 순간 반드시 지분을 갖는다.** 지분 없는 Partner는 없으므로 "Equity Partner"라는 별도 직함은 두지 않는다. 그리고 Partner 중 지명(Appointment)된 사람이 Managing Partner가 된다. 사다리를 오르는 것과 파트너가 되는 것은 서로 다른 종류의 사건이다 — 전자는 성과의 축적이고, 후자는 하우스의 선택이다.
 
 **Founder's Reflection.** 회사는 돈을 많이 주는 곳이 아니라, 사람이 더 큰 사람이 될 기회를 주는 곳이어야 한다.
 
@@ -338,7 +379,7 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 
 **제4조 (Membership)** Membership은 House를 현재 함께 운영하는 공동체를 의미한다. Membership은 Ownership과 구분되며, 현재의 책임과 활동을 전제로 유지된다.
 
-**제5조 (Partner)** Partner는 House의 Membership이다. Partner는 직급이 아니며 House의 철학과 장기적 책임을 공유하는 구성원이다.
+**제5조 (Partner)** Partner는 House의 Membership이다. Partner는 직급이 아니며 House의 철학과 장기적 책임을 공유하는 구성원이다. 모든 Partner는 Ownership을 보유한다 — 지분 없는 Partner는 없다.
 
 **제6조 (Managing Partner)** Managing Partner는 Partner 중 House의 공동 운명을 현재 함께 부담하도록 Appointment된 사람이다. Managing Partner는 가장 높은 권리가 아니라 가장 큰 책임을 가진다. Managing Partner는 동일한 지위를 가지나 동일한 역할을 수행할 필요는 없다.
 
@@ -358,7 +399,7 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 
 **제12조 (Managing Partner Meeting)** Managing Partner Meeting은 House의 최고 거버넌스 기구이며 철학, Membership, 승계 및 장기 전략을 결정한다. 신규 Managing Partner Admission, 신주 발행, 회사 매각, 정관·헌법 개정, Carry Policy 변경, 대표이사 선임·해임은 만장일치를 요한다.
 
-**제13조 (Chief Executive Officer)** CEO는 회사를 대표하고 전략을 집행한다. CEO는 House를 소유하지 않으며 헌법을 변경할 권한을 갖지 않는다.
+**제13조 (Representative Directors)** 회사는 대표이사를 각자 대표로 둘 수 있다. 대표이사는 대외적으로 각자 회사를 대표하고 전략을 집행하되, 대내적으로는 본 헌법과 내부 프로세스를 따른다. 대표이사는 House를 소유하지 않으며 헌법을 변경할 권한을 갖지 않는다.
 
 **제14조 (Investment Committee)** Investment Committee는 투자와 회수에 관한 의사결정을 담당한다. Membership이나 철학은 결정하지 않는다. Deal Thesis, 다운사이드, Exit Path의 사전 문서화는 상정 요건이며, 회수 가능성은 의결 요건이다.
 
@@ -374,9 +415,9 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 
 **제17조 (Ownership)** Ownership은 소유권이다. Ownership은 Membership이나 Governance를 자동으로 발생시키지 않는다. 지분은 소유권이며 노동의 대가가 아니다.
 
-**제18조 (House Capital)** House Capital은 House의 지속성과 독립성을 위한 장기 자본이다.
+**제18조 (House Capital)** House Capital은 House의 지속성과 독립성을 위한 장기 자본이다. House Capital은 Carry의 일부를 선취 적립하여 조성한다.
 
-**제19조 (Partner Capital)** Partner Capital은 Partner와 Managing Partner가 House와 공동 운명을 실천하기 위해 축적하는 자본이다.
+**제19조 (Partner Capital)** Partner Capital은 Partner와 Managing Partner가 House와 공동 운명을 실천하기 위해 축적하는 자본이다. Partner Capital은 House Capital과 함께 미래 펀드의 GP Commit을 지탱한다.
 
 **제20조 (Carry)** Carry는 Ownership의 권리가 아니라 현재 House를 운영하는 Membership의 성과보상이다. Carry는 특정 거래의 공로를 이유로 사후 조정하지 않는다.
 
@@ -414,10 +455,12 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 
 | 지위 | 인원 | Corporate Role | Membership / Ownership |
 |---|---|---|---|
-| 공동창업자 | 2인 | 공동대표이사 (Co-CEO) | Managing Partner, 각 45% |
-| 관리이사 | 1인 | 상무이사 (COO) | Equity Partner, 10% |
+| 공동창업자 | 2인 | 각자 대표이사 (CEO) | Managing Partner, 각 45% |
+| 관리이사 | 1인 | 상무이사 (COO) | Partner, 10% |
 
-명함 표기: 공동대표 2인은 `Co-CEO | Managing Partner`(대외 필요시 `CEO | Managing Partner` / `Representative Director | Managing Partner`), 관리이사는 `Chief Operating Officer | Equity Partner`. "Equal Partner", "Co-Founder Partner"류의 표기는 주 타이틀로 사용하지 않는다.
+**각자 대표 원칙.** 대표이사 2인은 공동대표가 아니라 **각자 대표**로 등기한다. 공동대표는 모든 대외 행위에 두 사람의 공동 명의를 요구해 속도를 잃는다. 각자 대표는 대외적으로 각자가 단독으로 회사를 대표하여 속도와 권한을 갖되, **대내적으로는 내부 프로세스가 우선한다** — 만장일치 사항(헌법 제12조)과 IC 의결이 필요한 사안을 의결 없이 대외 약정하지 않으며, 중요한 대외 행위는 상호 사전 공유한다. 각자 대표는 단독으로 회사를 구속할 수 있는 만큼, 이 내부 규율은 각자 대표 체제의 전제 조건이다(상호 통지 기준 등 세부는 주주간계약).
+
+명함 표기: 대표이사 2인은 `CEO | Managing Partner`, 관리이사는 `Chief Operating Officer | Partner`. "Equal Partner", "Co-Founder Partner"류의 표기는 주 타이틀로 사용하지 않는다.
 
 **전략 자본 운영.** 영업비는 개인이 아니라 전략에 배정한다(헌법 제23~24조). COO가 예산 현황을 관리·보고하고 회의를 소집하되 승인권은 없다. 예산 초과 시 MP Meeting에서 추가 배정을 결정하며, 심사 기준은 관계의 중요성이 아니라 전략 적정성이다.
 
@@ -455,9 +498,9 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 
 | 이름 | 직위 | 배경 | 담당 |
 |---|---|---|---|
-| 김지호 | 파트너 · 공동대표이사 (Managing Partner, 45%) | 전략 컨설팅펌 8년+ · PE 6년+ | 투자전략 · Value-up · PMI 설계 |
-| 오동명 | 파트너 · 공동대표이사 (Managing Partner, 45%) | 회계법인 FAS 5년+ · PE 10년+ | 딜소싱 · 투자검토·실행 · 펀딩 · 펀드운용 총괄 |
-| 김다솜 | 파트너 · 상무이사 (COO · Equity Partner, 10%) | PE 11년+ | Administration · Compliance · LP Reporting · 미들·백오피스 |
+| 김지호 | 파트너 · 각자 대표이사 (Managing Partner, 45%) | 전략 컨설팅펌 8년+ · PE 6년+ | 투자전략 · Value-up · PMI 설계 |
+| 오동명 | 파트너 · 각자 대표이사 (Managing Partner, 45%) | 회계법인 FAS 5년+ · PE 10년+ | 딜소싱 · 투자검토·실행 · 펀딩 · 펀드운용 총괄 |
+| 김다솜 | 파트너 · 상무이사 (COO · Partner, 10%) | PE 11년+ | Administration · Compliance · LP Reporting · 미들·백오피스 |
 
 ### 투자 전략 (Current Mandate)
 
@@ -482,14 +525,14 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 | House | 법인이 아니라 원칙을 공유하는 살아있는 공동체 (헌법 제1조) |
 | Membership | House를 현재 함께 운영하는 공동체. 활동을 전제로 유지 (헌법 제4조) |
 | Ownership | 소유권. Membership·Governance를 자동으로 발생시키지 않음 (헌법 제17조) |
-| Partner | House의 Membership. 직급이 아님 (헌법 제5조) |
+| Partner | House의 Membership. 승진이 아니라 입회이며, 모든 Partner는 지분을 보유 (헌법 제5조) |
 | Managing Partner | House의 공동 운명을 현재 함께 부담하도록 Appointment된 Partner (헌법 제6조) |
 | Admission | Partner Membership으로의 입회 (헌법 제7조) |
 | Appointment | Managing Partner에 대한 책임 위임 (헌법 제8조) |
 | Carry | 현재 Membership의 성과보상. Ownership의 권리가 아님 (헌법 제20조) |
 | GP Commit | House와 Membership의 장기적 Commitment를 표현하는 공동 자본 (헌법 제21조) |
-| House Capital | House의 지속성과 독립성을 위한 장기 자본 (헌법 제18조) |
-| Partner Capital | Partner가 공동 운명을 실천하기 위해 축적하는 자본 (헌법 제19조) |
+| House Capital | 하우스 장기 자본. Carry의 20% 선취로 조성 (헌법 제18조, 제10장) |
+| Partner Capital | Partner가 Carry 적립으로 축적하는 자본. House Capital과 함께 미래 GP Commit을 지탱 (헌법 제19조, 제10장) |
 | House Builder | 거래보다 사람을, 성과보다 원칙을 남기는 사람 (제13장) |
 | Investment Doctrine | 변하지 않는 투자 원칙 — Control 원칙, 연속된 책임, The Three Questions (제7장) |
 | The Three Questions | 투자 통과 요건: 글로벌 확장성 · 현금흐름의 질 · 경영권 (제7장) |
@@ -503,6 +546,7 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 - **Edition 1.2**: 설립 확정 사항 반영(45/45/10, Co-CEO 2인 + COO/Equity Partner, 프로젝트 펀드 우선). Investment Doctrine 신설. Founders Term Sheet 분리.
 - **Edition 2.0**: 산문 중심 재집필. 서문 신설, 원칙마다 "막으려는 실패" 명시.
 - **Edition 3.0 (구조 전면 재편)**: 초안 유래의 Book 0~5 체계를 폐기하고 독자의 질문을 따르는 5부 구성으로 재편(만드는 것 → 함께 일하는 방식 → 투자 → 분배 → 승계). 철학-헌법 중복 서술 제거: 산문은 "읽는 층", 헌법은 "찾는 층"으로 역할 분리. 신설 2개 장 — 제4장 "불일치와 갈등"(반대의 의무, disagree & commit, "내가 말했잖아" 금지, 교착은 관계의 신호), 제5장 "The Firm"(COO와 미들백오피스를 신뢰 엔진으로 정의). Seven Prohibitions를 결말부 총정리로 이동. 관리용 메타데이터를 부록으로 격리.
+- **Edition 3.1**: 파트너십 체계 재정의 — Career의 끝은 Principal, Partner는 입회(지분 필수), "Equity Partner" 직함 폐지, Partner 중 지명이 Managing Partner. 대표이사 체제를 공동대표에서 **각자 대표**로 변경(대외 단독 대표권 + 대내 프로세스 우선). Carry 구조 개편 — House Capital 20% 선취 + People Pool 80% **유닛제**(그룹 비율제의 인원 미반영 문제 해소, 펀드 결성 시 확정·사후 변경 금지). **Partner Capital 적립 원칙** 신설(목표 역산 + 기본 1/3 적립, 비강제·기회 반영).
 
 **남은 작업.**
 
