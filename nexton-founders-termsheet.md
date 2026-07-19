@@ -84,7 +84,7 @@
 - **8.2 Carry — 3단 Waterfall**: Carry 발생 시 ① 총액의 **20%를 House Capital로 선취 적립**, ② 총액의 **20%를 Partner Capital로 선취 적립**(MP·Partner 개인별 계정에 파트너 유닛 비례 귀속), ③ 잔여 **60%(People Pool)를 유닛제**로 전 구성원에게 배분한다(본편 제10장). 유닛 테이블은 각 펀드 결성 시 MP 만장일치로 확정하며 해당 펀드 존속 중 변경하지 않는다. **MP 유닛은 MP 간 항상 동일하며, Carry는 사후 재협상하지 않는다**(헌법 제20조). `[협의: 펀드별 유닛 테이블 확정]`
 - **8.3 COO·Management Team**: 유닛제를 통해 Carry에 참여한다(본편 제10장 기본 유닛 테이블). COO는 Partner로서 Partner Capital 선취에도 유닛 비례로 참여한다.
 - **8.4 배당**: Ownership에 대한 보상으로 Carry와 구분(헌법 Part IV).
-- **8.5 GP Commit**: 참여 기회는 신뢰에 기반하여 부여하며(본편 제11장), 수익은 출자자에게 귀속(헌법 제21조). 차기 펀드 GP Commit 출자는 House Capital과 Partner Capital을 우선 재원으로 한다. `[협의: 1호 펀드 GP Commit 규모 — 적립 전 설립 초기에는 별도 출자 분담 필요]`
+- **8.5 GP Commit**: 참여 기회는 신뢰에 기반하여 부여하며(본편 제11장), 수익은 출자자에게 귀속(헌법 제21조). **최초(1호 펀드) GP Commit은 창업 파트너 전원이 지분 비율(45:45:10)대로 출자하는 것을 원칙으로 하고, 부족분은 회사가 차입으로 부담하며 이후 House Capital 선취분으로 상환한다.** 2호 펀드부터는 House Capital과 Partner Capital을 우선 재원으로 한다. `[협의: 1호 GP Commit 규모 및 회사 차입 한도]`
 - **8.6 Partner Capital**: MP와 Partner는 Partner Capital 부담을 원칙으로 하며, 8.2의 선취 구조로 이행한다(적립률: Carry 총액의 20%, House Capital과 동일 금액). 적립 유예·감액 등 예외는 MP Meeting 만장일치로만 허용한다. 소유권은 개인에게 있고, 용도는 차기 펀드 GP Commit 출자가 우선이며, GP Commit 소요가 적립액을 초과하면 MP Meeting에서 추가 분담을 결정하고 잔여분은 이월한다(헌법 제19조, 본편 제10장).
 
 ## 9. 승계 및 비상 상황
@@ -108,7 +108,7 @@
 - [ ] 펀드별 Carry 유닛 테이블 확정 (기본안: MP 10 · Partner 6 · COO 4 · Principal 3 · Director 1.5)
 - [ ] 예비 유닛(Reserve) 규모 (권고: 총 유닛의 10% 내외)
 - [ ] GP Commit 목표율 (펀드 약정액의 1~2%) — 확정 구조: House Capital 20% + Partner Capital 20% 선취가 공동 재원 (적립액 동일)
-- [ ] 1호 펀드 GP Commit 분담 (Carry 적립 발생 전이므로 창업자 별도 출자 필요 — 분담 비율)
+- [x] 1호 펀드 GP Commit 분담 — **확정: 지분 비율(45:45:10) 출자 원칙, 부족분은 회사 차입 후 House Capital로 상환** (규모·차입 한도는 협의)
 - [ ] 각자 대표 상호 사전 통지 기준 금액
 - [ ] 베스팅 1년 cliff 적용 여부
 - [ ] Bad Leaver에 무단 중도 퇴사 포함 여부 및 매수가액
