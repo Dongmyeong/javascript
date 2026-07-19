@@ -105,7 +105,7 @@
 
 ## 협의 필요 항목 요약 (체크리스트)
 
-- [ ] 펀드별 Carry 유닛 테이블 확정 (기본안: MP 10 · Partner 6 · Principal 3 · COO 2 · Director 1.5 — COO·Management 유닛은 Principal을 넘지 않는 것이 원칙)
+- [ ] 펀드별 Carry 유닛 테이블 확정 — 본부 × 직급 체계 (기본안: MP 10 / 투자본부 Partner 6 · Principal 3 · Director 1.5 · Associate 1 · Analyst 0.5 / 관리본부 Partner 2 · Principal 1 · Director 0.75 · Associate 이하 0.5. 원칙: 관리본부 각 직급은 투자본부의 한 직급 아래를 넘지 않는다)
 - [ ] 예비 유닛(Reserve) 규모 — 원칙: 채용 계획 역산 × 1.2, 가드레일 총 유닛의 10~20% (1호 펀드 채용 계획 확정 필요)
 - [ ] Merit 평가 기준 비중 (기본안: 딜 기여 70% · 하우스 기여 30%) 및 연 평가 절차
 - [ ] GP Commit 목표율 (펀드 약정액의 1~2%) — 확정 구조: House Capital·Partner Capital 동일 요율 선취가 공동 재원
