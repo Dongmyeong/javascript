@@ -1,153 +1,121 @@
 # The NEXTON Way
 
-**Master Manuscript — Edition 1.2**
+**Master Manuscript — Edition 2.0**
 
 ---
 
-## Editorial Note
+## 서문 — 이 책을 읽는 세 사람에게
 
-이 문서는 NEXTON의 유일한 Master Manuscript이다. 모든 철학, 헌법, 정책, 계약서는 이 원고를 기준으로 발전한다.
+세 사람이 회사를 시작한다. 두 사람은 공동대표로서 투자를 이끌고, 한 사람은 관리이사로서 하우스의 기반을 지킨다. 지금 우리는 서로를 신뢰하고, 같은 그림을 보고 있으며, 어떤 문서도 필요하지 않다고 느낀다.
 
-Edition 1의 목적은 새로운 내용을 추가하는 것이 아니라 기존 원고를 정리하는 것이다. 우선순위는 다음과 같다.
+이 책은 바로 그 순간, 문서가 필요 없다고 느끼는 지금 쓰여야 한다.
 
-1. 중복 제거
-2. 구조 재배치
-3. 문체 통일
-4. 철학과 제도의 연결
-5. 이후 필요한 내용만 추가 집필
+시간이 지나면 반드시 다음의 순간들이 온다. 큰 성과가 난 해에 누군가의 기여가 유난히 커 보이는 순간. 실패한 딜의 책임을 나눠야 하는 순간. 새로운 파트너를 들일지 결정해야 하는 순간. 창업자 중 한 명이 떠나야 하는 순간. 그때 우리의 기억은 서로 다를 것이고, 이해관계는 판단을 흐릴 것이다. 이 책은 그 순간의 우리를 위해, 판단이 흐려지기 전의 우리가 남기는 기준이다.
 
-> **Edition 1.2 편집 이력**
-> - NextOn Partners(넥스톤파트너스) 설립 확정 사항을 반영: Co-CEO(Managing Partner) 2인 + 관리이사(COO/Equity Partner) 1인, 지분 45/45/10, 1호 프로젝트 펀드 우선 전략.
-> - Book 0에 Chapter 9 "The Investment Doctrine"(컨트롤 바이아웃 투자 철학·3대 질문) 신설. Closing Declaration은 Book 0 말미로 이동.
-> - Book 2·Book 3을 예시(초안)에서 확정 조문으로 정식화. Book 4에 투자 프로세스·LP Reporting·이해상충 관리 추가.
-> - Appendix D에 설립 시점 Profile(2026, 시점 고정 정보) 신설. 회사소개서(NextOn Company Introduction 2026)의 전략·거버넌스 내용을 원고와 정합화.
-> - 계약 문서 초안은 별도 문서 `nexton-founders-termsheet.md`로 분리(Master Manuscript 유일성 원칙 유지).
->
-> **Edition 1.1 편집 이력**
-> - 반복 병합되어 있던 동일 챕터(Book 0 Ch.1–8, Book 1 Part I–IV)의 중복을 모두 제거하고 각 1회만 남겼다.
-> - `NEXTON Constitution & Partnership Blueprint`, `NEXTON 헌법(KR)`, `Partnership & Governance Blueprint`의 내용을 Book 1(헌법 조문), Book 2(자본·경제), Book 3(거버넌스·멤버십), Book 4(운영), Appendix(설계 이력)로 재배치하였다.
-> - 문체를 한국어 평서형(~이다/~한다)으로 통일하고, House·Membership·Carry 등 핵심 용어는 원어를 유지하였다.
-> - 각 헌법 조문이 어떤 철학(Book 0)에서 나왔는지 연결을 명시하였다.
+**읽는 법.** 이 책은 세 개의 층으로 되어 있다.
 
----
+- **Book 0 (철학)** 은 *왜* 에 답한다. 우리가 어떤 회사를 만들려 하는지, 각 원칙이 어떤 실패를 막기 위해 존재하는지를 설명한다. 방향을 잃었을 때 여기로 돌아온다.
+- **Book 1 (헌법)** 은 *무엇이 변하면 안 되는지* 에 답한다. 사람, 펀드, 시장이 변해도 유지되어야 하는 것을 조문으로 고정한다. 다툼이 생겼을 때 여기로 돌아온다.
+- **Book 2–4 (제도와 운영)** 는 *어떻게* 에 답한다. 자본, 거버넌스, 일상 운영의 구체적 규칙이다. 시장과 조직이 변하면 여기는 바뀔 수 있다 — 단, Book 0과 Book 1에 부합하는 방향으로만.
 
-## Master Structure
-
-| Section | Description | 상태 |
-|---|---|---|
-| Book 0 | The NEXTON Philosophy | 집필 완료 (Ch.9 Investment Doctrine 추가) |
-| Book 1 | The NEXTON Constitution | 정리 완료 (Part I–VI) |
-| Book 2 | Capital & Economics | 정식화 완료 (설립 구조 확정 반영) |
-| Book 3 | Governance & Membership | 정식화 완료 (설립 구조 확정 반영) |
-| Book 4 | Operating Manual | 초안 보강 (투자 프로세스·LP Reporting) |
-| Book 5 | Casebook | 미집필 |
-| Appendix | Design History / Glossary / Founding Profile | 진행 중 |
+모든 정책, 계약, 규정은 이 원고를 기준으로 발전한다. 이 문서는 NEXTON의 유일한 Master Manuscript이다.
 
 ## Core Doctrine
 
-- House First. Always.
-- Trust First. Always.
-- Leave the House stronger than you found it.
+- **House First. Always.**
+- **Trust First. Always.**
+- **Leave the House stronger than you found it.**
 - NEXTON exists to build a House that outlives its Founders.
 - Membership과 Ownership은 구분된다.
 - Career, Membership, Governance는 서로 다른 체계이다.
+
+여섯 문장이 이 책 전체의 요약이다. 앞의 세 문장은 태도이고, 뒤의 세 문장은 구조이다. 태도는 Book 0이 설명하고, 구조는 Book 1이 고정한다.
 
 ---
 
 # Book 0 — The NEXTON Philosophy
 
-## Chapter 1. The House
+## Chapter 1. The House — 우리는 무엇을 만들고 있는가
 
-### Why We Exist
+대부분의 투자회사는 창업자의 수명과 함께 끝난다. 뛰어난 개인이 회사를 세우고, 그 개인의 감각과 관계로 성장하다가, 그 개인이 떠나면 흩어진다. 한국 시장에서 우리는 이런 하우스를 수없이 보았다. 실력이 없어서 무너진 것이 아니다. **개인보다 오래 사는 구조를 만들지 않았기 때문에** 무너졌다.
 
 NEXTON은 단순한 투자회사가 아니다. NEXTON은 세대를 이어갈 수 있는 House를 만들기 위해 존재한다. House는 사람보다 오래 살아야 하며, 원칙은 창업자보다 오래 살아야 한다.
 
-### Core Principle
+여기서 House는 법인격을 말하는 것이 아니다. House는 원칙을 공유하는 살아있는 공동체이다. House는 네 가지 일을 한다. 신뢰를 축적하고, 사람을 성장시키며, 자본을 복리로 축적하고, 다음 세대에게 원칙을 전달한다. 법인은 이 공동체를 담는 그릇일 뿐이다.
 
-**House First. Always.** 모든 의사결정은 "이 결정이 House를 더 강하게 만드는가?"라는 질문에서 시작한다.
+그래서 모든 의사결정의 첫 질문은 하나다.
 
-### Definition of the House
+> **"이 결정이 House를 더 강하게 만드는가?"**
 
-House는 법인이 아니라 원칙을 공유하는 살아있는 공동체이다. House는 신뢰를 축적하고, 사람을 성장시키며, 자본을 복리로 축적하고, 다음 세대에게 원칙을 전달한다.
+이 질문이 힘을 갖는 것은 개인의 이해와 House의 이해가 충돌하는 순간이다. 내 몫이 줄더라도 House가 강해지는 결정, 지금은 손해지만 10년 뒤의 House가 감사할 결정 — 그런 결정을 반복할 수 있는지가 이 하우스의 성패를 가른다.
 
-### Founder's Note
+**Founder's Note.** 좋은 펀드를 만드는 것은 목표가 아니다. 좋은 펀드를 계속 만들어낼 수 있는 House를 만드는 것이 목표이다.
 
-좋은 펀드를 만드는 것은 목표가 아니다. 좋은 펀드를 계속 만들어낼 수 있는 House를 만드는 것이 목표이다.
+## Chapter 2. Trust — 첫 번째 자산
 
-## Chapter 2. Trust
+하우스가 가장 먼저 축적해야 하는 자산은 자본이 아니라 신뢰이다.
 
-### Trust is the First Asset
+순서를 생각해 보자. LP가 자금을 맡기는 것은 신뢰가 있어서다. 좋은 딜이 우리를 먼저 찾아오는 것은 매도자와 자문사가 우리를 신뢰해서다. 좋은 사람이 합류하는 것도 같다. 신뢰는 LP를 만들고, Deal을 만들며, 사람을 모으고, 결국 자본을 만든다. 자본은 언제나 신뢰의 결과물이지, 그 반대가 아니다.
 
-House가 가장 먼저 축적해야 하는 자산은 자본이 아니라 신뢰이다. 신뢰는 LP를 만들고, Deal을 만들며, 사람을 모으고, 결국 자본을 만든다. NEXTON은 성과를 직접 추구하지 않는다. 신뢰를 축적하는 시스템을 구축하며, 성과는 그 결과로 따라온다고 믿는다.
+그래서 NEXTON은 성과를 직접 추구하지 않는다. 신뢰를 축적하는 시스템을 구축하며, 성과는 그 결과로 따라온다고 믿는다. 이것은 성과에 무관심하다는 뜻이 아니다. 성과의 순서에 대한 믿음이다.
 
-### Constitutional Principle
+신뢰에는 두 가지 성질이 있다. 첫째, 신뢰는 복리로 성장한다. 정직하게 보고한 한 번의 분기, 약속을 지킨 한 번의 클로징이 쌓여서 다음 펀드의 결성 속도가 된다. 둘째, 신뢰는 비대칭적으로 파괴된다. 10년 쌓은 신뢰가 한 번의 과장된 트랙레코드, 한 번의 숨긴 나쁜 소식으로 사라진다.
+
+**헌법적 원칙.**
 
 1. 신뢰는 모든 경제적 가치보다 우선한다.
 2. 단기 성과를 위해 장기 신뢰를 훼손하지 않는다.
 3. House의 평판은 모든 구성원이 함께 관리하는 공동 자산이다.
 
-### Founder's Reflection
+실무에서 이 원칙은 이렇게 나타난다. 나쁜 소식은 좋은 소식과 같은 속도로 보고한다. 트랙레코드는 출처와 귀속을 정확히 표기한다(창립 운용역의 전 소속 실적은 전 소속 실적이라고 말한다). 지키지 못할 일정은 약속하지 않는다.
 
-탁월한 투자자는 거래를 성사시킬 수 있다. 탁월한 House는 거래가 반복적으로 찾아오게 만든다. 그 차이를 만드는 것은 신뢰이며, 신뢰는 복리로 성장한다.
+**Founder's Reflection.** 탁월한 투자자는 거래를 성사시킬 수 있다. 탁월한 House는 거래가 반복적으로 찾아오게 만든다. 그 차이를 만드는 것은 신뢰이며, 신뢰는 복리로 성장한다.
 
-## Chapter 3. Partnership
+## Chapter 3. Partnership — 공로를 계산하지 않는 이유
 
-### Why Partnership Matters
+NEXTON은 개인의 성공을 극대화하기 위한 조직이 아니다. House를 함께 이어갈 파트너십을 만드는 조직이다. 성과는 개인이 만들 수 있지만, House는 파트너십으로만 유지된다.
 
-NEXTON은 개인의 성공을 극대화하기 위한 조직이 아니다. House를 함께 이어갈 파트너십을 만드는 조직이다. 성과는 개인이 만들 수 있지만 House는 파트너십으로만 유지된다.
+이 장의 핵심 규칙은 하나다. **Managing Partner 간에는 사후적으로 공로를 계산하지 않는다.**
 
-### Core Principles
+왜 계산하지 않는가. 계산이 불가능하기 때문이다. 성공한 바이아웃 하나를 분해해 보라. 딜을 소싱한 사람, 구조를 설계한 사람, LP를 설득한 사람, 인수 후 3년간 회사를 운영한 사람, 매각 타이밍을 잡은 사람 — 이 중 누구의 기여가 몇 퍼센트인가? 정답이 없는 질문에 답을 강요하는 순간, 파트너십은 회계 장부가 되고 동료는 채권자가 된다. 공로 계산은 공정을 만드는 것이 아니라 분쟁을 만든다.
+
+그래서 우리는 계산 대신 선택을 한다. Managing Partner가 된다는 것은 **공동 운명을 선택**하는 것이다. 공동의 성공은 함께 공유하고, 공동의 실패는 함께 부담한다. 우리의 지분이 45 대 45로 같은 것, Carry의 Managing Partner Pool을 균등하게 나누는 것은 이 선택의 경제적 표현이다.
+
+다만 NEXTON은 Merit와 Partnership을 구분한다. Investment Team은 성과를 통해 성장하며 경제적 차등 보상을 받는다 — 여기는 Merit의 영역이고, 경쟁은 건강하다. Managing Partner는 다르다. 공동 운명을 선택한 이후에는 House의 장기적 성공을 우선한다. 파트너십은 성과 경쟁을 부정하는 것이 아니라, **성과 경쟁이 끝나는 지점을 정의**하는 것이다.
+
+**핵심 원칙.**
 
 - Managing Partner가 된 이후에는 공동 운명을 선택한다.
 - Managing Partner 간에는 사후적으로 공로를 계산하지 않는다.
 - 관계는 개인의 자산이 아니라 House의 자산이다.
 - 공동의 성공은 함께 공유하고 공동의 실패는 함께 부담한다.
 
-### Merit and Partnership
+**Founder's Reflection.** Managing Partner가 되는 순간 경쟁의 대상은 동료가 아니라 시간이 된다.
 
-NEXTON은 Merit와 Partnership을 구분한다. Investment Team은 성과를 통해 성장하며 경제적 차등 보상을 받는다. Managing Partner는 공동 운명을 선택한 이후에는 House의 장기적 성공을 우선한다.
+## Chapter 4. Stewardship — 우리는 소유자가 아니라 수탁자다
 
-### Founder's Reflection
+법적으로 우리는 이 회사의 주주다. 그러나 철학적으로 NEXTON은 House를 소유하는 조직이 아니다. 모든 구성원은 House를 잠시 맡아 운영하는 사람이다. Stewardship은 직함이 아니라 태도이며, House를 다음 세대에 더 강한 상태로 전달하려는 책임이다.
 
-파트너십은 성과를 부정하는 것이 아니다. 성과 경쟁이 끝나는 지점을 정의하는 것이다. Managing Partner가 되는 순간 경쟁의 대상은 동료가 아니라 시간이 된다.
+이 태도가 실제 행동을 바꾸는 지점은 명확하다. 소유자는 자신의 영향력을 키우고, 수탁자는 House의 영향력을 키운다. 소유자는 관계를 독점하고, 수탁자는 관계를 물려준다. 소유자에게 후계자는 위협이고, 수탁자에게 후계자는 완성이다.
 
-## Chapter 4. Stewardship
-
-### The House is Held in Trust
-
-NEXTON은 House를 소유하는 조직이 아니다. 모든 구성원은 House를 잠시 맡아 운영하는 사람이다. Stewardship은 직함이 아니라 태도이며, House를 다음 세대에 더 강한 상태로 전달하려는 책임이다.
-
-### Core Principles
+**핵심 원칙.**
 
 - House는 현재 세대의 것이 아니라 다음 세대의 것이다.
 - 권한은 특권이 아니라 책임이다.
 - 좋은 Managing Partner는 자신의 영향력이 아니라 House의 영향력을 키운다.
 - 후계자를 만들지 못한 리더는 House를 완성하지 못한 리더이다.
 
-### Stewardship in Practice
+**실천.** Stewardship은 거창한 것이 아니라 네 가지 습관이다. 주요 미팅에 후배를 동석시킨다. 의사결정과 그 근거를 문서로 남긴다. 관계를 소개하고 연결한다. 자신만 아는 지식을 시스템에 옮긴다. House는 사람에게 의존하지 않고 원칙과 시스템에 의존해야 한다.
 
-Stewardship은 관계를 공유하고, 정보를 문서화하며, 후배를 동석시키고, 의사결정을 시스템으로 남기는 행동으로 나타난다. House는 사람에게 의존하지 않고 원칙과 시스템에 의존해야 한다.
+**Founder's Reflection.** 내가 없어졌을 때 House가 더 약해진다면 나는 좋은 창업자가 아니다. 내가 없어졌는데도 House가 계속 성장한다면 비로소 창업자의 역할을 다한 것이다.
 
-### Founder's Reflection
+## Chapter 5. Opportunity — 보상이 아니라 기회를 분배한다
 
-내가 없어졌을 때 House가 더 약해진다면 나는 좋은 창업자가 아니다. 내가 없어졌는데도 House가 계속 성장한다면 비로소 창업자의 역할을 다한 것이다.
+사람을 움직이는 세 가지가 있다. 급여는 현재를 유지하게 한다. 성과보수는 과거를 보상한다. 그러나 **기회는 미래를 만든다.** House가 부여할 수 있는 가장 큰 자산은 돈이 아니라, 다음 성장에 참여할 수 있는 자격이다.
 
-## Chapter 5. Opportunity
+NEXTON은 보상보다 기회를 분배하는 House를 지향한다. 보상을 경쟁시키는 조직은 구성원을 제로섬 게임에 가두지만, 기회를 연결하는 조직은 파이 자체를 키운다.
 
-### Why Opportunity Matters
-
-NEXTON은 보상보다 기회를 분배하는 House를 지향한다. 급여는 현재를 유지하고, 성과보수는 과거를 보상한다. 그러나 기회는 미래를 만든다. House가 부여할 수 있는 가장 큰 자산은 다음 성장에 참여할 수 있는 자격이다.
-
-### Core Principles
-
-- 기회는 권리가 아니라 신뢰를 바탕으로 부여되는 자격이다.
-- Managing Partner는 가장 높은 보상이 아니라 가장 큰 기회이다.
-- GP Commit 참여는 의무 이전에 House에 대한 Commitment이다.
-- House는 기회를 독점하지 않고 다음 세대에게 연결한다.
-
-### The Opportunity Ladder
-
-NEXTON의 기회는 책임과 함께 확장된다.
+기회는 사다리로 설계되어 있고, 책임과 함께 확장된다.
 
 1. 더 큰 역할을 맡을 기회
 2. Partner Membership을 얻을 기회
@@ -155,38 +123,46 @@ NEXTON의 기회는 책임과 함께 확장된다.
 4. GP Commit과 SPC에 참여할 기회
 5. 다음 세대의 기회를 설계할 기회
 
-### Founder's Reflection
+**핵심 원칙.**
 
-회사는 돈을 많이 주는 곳이 아니라, 사람이 더 큰 사람이 될 기회를 주는 곳이어야 한다. NEXTON은 보상을 경쟁시키는 조직이 아니라 기회를 연결하는 House가 되고자 한다.
+- 기회는 권리가 아니라 신뢰를 바탕으로 부여되는 자격이다.
+- Managing Partner는 가장 높은 보상이 아니라 가장 큰 기회이다.
+- GP Commit 참여는 의무 이전에 House에 대한 Commitment이다.
+- House는 기회를 독점하지 않고 다음 세대에게 연결한다.
 
-## Chapter 6. Excellence
+**Founder's Reflection.** 회사는 돈을 많이 주는 곳이 아니라, 사람이 더 큰 사람이 될 기회를 주는 곳이어야 한다.
 
-### Excellence is the Duty of the House
+## Chapter 6. Excellence — 좋은 문화만으로는 부족하다
+
+여기까지 읽으면 오해할 수 있다. 신뢰, 파트너십, 기회 — 좋은 문화의 언어들이다. 그러나 분명히 하자. **탁월함 없는 신뢰는 오래 지속되지 않는다.** LP는 착한 하우스가 아니라 돈을 벌어주는 하우스에 다시 출자한다. 문화는 하우스를 시작하게 하지만, 탁월함이 하우스를 지속하게 만든다.
 
 NEXTON은 좋은 조직이 아니라 최고의 House를 지향한다. 탁월함은 선택이 아니라 생존 조건이다.
 
-- 탁월함 없는 신뢰는 오래 지속되지 않는다.
 - 성과는 객관적으로 평가하고 공정하게 보상한다.
 - Investment Team은 Merit를 통해 성장한다.
 - House는 현재 세대보다 더 뛰어난 다음 세대를 만드는 것을 목표로 한다.
 
-### Founder's Reflection
+마지막 항목이 가장 어렵고 가장 중요하다. 채용에서 타협하지 않는 것, 후배에게 실전 기회를 주는 것, 떠나는 것이 두려운 조직이 아니라 남는 것이 자랑스러운 조직을 만드는 것 — 모두 여기에 속한다.
 
-좋은 문화는 House를 시작하게 하지만, 탁월함은 House를 지속하게 만든다.
+**Founder's Reflection.** 좋은 문화는 House를 시작하게 하지만, 탁월함은 House를 지속하게 만든다.
 
-## Chapter 7. The Seven Prohibitions
+## Chapter 7. The Seven Prohibitions — 하우스는 예외로 무너진다
 
-House를 무너뜨리는 것은 악의보다 작은 예외이다. NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
+House를 무너뜨리는 것은 악의보다 작은 예외이다. 배임이나 횡령으로 무너지는 하우스는 드물다. 대부분은 "이번 한 번만"으로 무너진다. 이번 딜만 공로를 인정해 주자. 이 관계만은 내 것으로 하자. 창업자니까 이 정도는 괜찮지 않나. 예외는 한 번 생기면 선례가 되고, 선례는 원칙을 대체한다.
 
-1. 공로를 사후적으로 계산하지 않는다.
-2. 관계를 개인의 자산으로 만들지 않는다.
-3. 창업을 영구적인 특권으로 만들지 않는다.
-4. House보다 개인을 앞세우지 않는다.
-5. 단기 성과를 위해 장기 신뢰를 훼손하지 않는다.
-6. 권한을 책임보다 크게 만들지 않는다.
-7. 다음 세대의 기회를 현재 세대가 소비하지 않는다.
+그래서 NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
+
+1. **공로를 사후적으로 계산하지 않는다.** — 계산은 파트너십을 채권 관계로 바꾼다 (Ch.3).
+2. **관계를 개인의 자산으로 만들지 않는다.** — 관계의 사유화는 하우스의 소싱 능력을 개인의 이직 리스크로 바꾼다.
+3. **창업을 영구적인 특권으로 만들지 않는다.** — Founder는 역사이고, Managing Partner는 현재의 책임이다.
+4. **House보다 개인을 앞세우지 않는다.** — 어떠한 개인도 회사보다 중요하지 않다.
+5. **단기 성과를 위해 장기 신뢰를 훼손하지 않는다.** — 신뢰는 복리로 쌓이고 한 번에 무너진다 (Ch.2).
+6. **권한을 책임보다 크게 만들지 않는다.** — 책임 없는 권한이 모이는 곳에서 하우스는 부패한다.
+7. **다음 세대의 기회를 현재 세대가 소비하지 않는다.** — 기회의 독점은 하우스의 수명을 현재 세대의 수명으로 줄인다 (Ch.5).
 
 ### The Seven Questions
+
+중요한 결정 앞에서 일곱 번 묻는다.
 
 1. 이 결정은 House를 더 강하게 만드는가?
 2. 20년 뒤에도 같은 결정을 할 것인가?
@@ -196,13 +172,11 @@ House를 무너뜨리는 것은 악의보다 작은 예외이다. NEXTON은 다�
 6. 원칙을 지키는가?
 7. NEXTON다운가?
 
-## Chapter 8. The House Builder
+## Chapter 8. The House Builder — 우리는 어떤 사람을 기르는가
 
-### A House Builder Leaves More Than Results
+NEXTON은 뛰어난 투자자를 만드는 조직이 아니라 House Builder를 만드는 조직이다. 뛰어난 투자자는 거래를 남긴다. House Builder는 거래보다 사람을 남기고, 성과보다 원칙을 남기며, 자신보다 House를 더 오래 살아남게 만든다.
 
-NEXTON은 뛰어난 투자자를 만드는 조직이 아니라 House Builder를 만드는 조직이다. House Builder는 거래보다 사람을 남기고, 성과보다 원칙을 남기며, 자신보다 House를 더 오래 살아남게 만든다.
-
-### The Duties of a House Builder
+**House Builder의 의무.**
 
 - House를 처음 만났을 때보다 더 강하게 만든다.
 - 후계자를 반드시 육성한다.
@@ -210,23 +184,19 @@ NEXTON은 뛰어난 투자자를 만드는 조직이 아니라 House Builder를 
 - 지식을 문서와 시스템으로 남긴다.
 - 다음 세대에게 더 많은 기회를 남긴다.
 
-### The Legacy Test
+**The Legacy Test.** House Builder는 은퇴하는 날이 아니라 떠난 뒤에 평가된다. 그가 떠난 이후에도 House가 더 강해졌다면, 그는 House Builder였다.
 
-House Builder는 은퇴하는 날이 아니라 떠난 뒤에 평가된다. 그가 떠난 이후에도 House가 더 강해졌다면 그는 House Builder였다.
+## Chapter 9. The Investment Doctrine — 우리는 어떻게 투자하는가
 
-## Chapter 9. The Investment Doctrine
-
-### Why Doctrine Matters
-
-NEXTON은 한국 중소·중견기업의 경영권 거래(Control Buyout)에 집중하는 House이다. 투자 전략은 시장과 함께 변하지만 투자 원칙(Doctrine)은 변하지 않는다. Doctrine은 개별 딜의 유혹으로부터 House를 지키는 마지막 방어선이다.
+NEXTON은 한국 중소·중견기업의 경영권 거래(Control Buyout)에 집중하는 House이다. 투자 전략은 시장과 함께 변한다 — 타깃 섹터도, 펀드 규모도, 딜 유형도 바뀔 수 있다. 그러나 투자 원칙(Doctrine)은 변하지 않는다. Doctrine은 개별 딜의 유혹으로부터 House를 지키는 마지막 방어선이다.
 
 ### The Control Principle
 
-NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리는 기업의 미래를 관찰하는 것이 아니라 책임진다. 경영권 또는 그에 준하는 실질적 의사결정권을 확보할 수 없다면, 가치를 만들 책임도 질 수 없다.
+NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리는 기업의 미래를 관찰하는 것이 아니라 책임진다. 경영권 또는 그에 준하는 실질적 의사결정권을 확보할 수 없다면, 가치를 만들 책임도 질 수 없다. 책임질 수 없는 자산에는 투자하지 않는다.
 
 ### One Continuous Responsibility
 
-발굴 → 구조화 → 운영 → 회수는 분리된 기능이 아니라 **하나의 연속된 책임**이다. 딜을 소싱한 사람, 운영하는 사람, 회수하는 사람이 다르더라도 책임은 House 안에서 끊어지지 않는다. 이것은 Chapter 3(Partnership)의 원칙 — 공동의 성공은 함께 공유하고 공동의 실패는 함께 부담한다 — 의 투자 영역에서의 표현이다.
+발굴 → 구조화 → 운영 → 회수는 분리된 기능이 아니라 **하나의 연속된 책임**이다. 소싱한 사람 따로, 운영하는 사람 따로, 회수하는 사람 따로인 하우스에서는 각 단계가 다음 단계로 문제를 떠넘긴다. NEXTON에서는 책임이 House 안에서 끊어지지 않는다. 이것은 Chapter 3의 원칙 — 공동의 성공과 실패 — 의 투자 영역에서의 표현이다.
 
 ### The Three Questions of Investment
 
@@ -236,7 +206,7 @@ NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리�
 2. **현금흐름의 질 (Cash Flow Quality)** — 현금흐름이 거래구조와 가치제고 실행을 충분히 견딜 수 있는가?
 3. **경영권 (Control)** — 경영권 또는 그에 준하는 실질적 의사결정권을 확보할 수 있는가?
 
-세 질문 중 하나라도 명확하지 않은 거래는 핵심 검토 대상이 아니다.
+세 질문 중 하나라도 명확하지 않은 거래는 핵심 검토 대상이 아니다. "하나라도"가 핵심이다. 두 가지가 아무리 뛰어나도 나머지 하나의 불확실성을 상쇄하지 못한다.
 
 ### Investment Discipline
 
@@ -245,9 +215,7 @@ NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리�
 - 투자 논거(Deal Thesis)와 다운사이드는 IC 이전에 문서화하고, 회수 시점에 실제 결과와 비교·복기한다.
 - 딜을 놓치는 것은 실수가 아니다. 원칙을 어기고 딜을 잡는 것이 실수다.
 
-### Founder's Reflection
-
-좋은 딜은 다시 온다. 그러나 무너진 원칙은 다시 세우기 어렵다. Doctrine은 수익의 상한을 정하는 것이 아니라 House의 하한을 지키는 것이다.
+**Founder's Reflection.** 좋은 딜은 다시 온다. 그러나 무너진 원칙은 다시 세우기 어렵다. Doctrine은 수익의 상한을 정하는 것이 아니라 House의 하한을 지키는 것이다.
 
 ## Closing Declaration
 
@@ -261,13 +229,13 @@ NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리�
 
 ## Preamble
 
-헌법은 House를 보존하기 위해 존재한다. 헌법은 사람, 펀드, 시장이 변하더라도 변하지 않아야 하는 것을 정의한다.
+헌법은 House를 보존하기 위해 존재한다. 헌법은 사람, 펀드, 시장이 변하더라도 변하지 않아야 하는 것을 정의한다. Book 0이 이유를 설명한다면, Book 1은 결론을 고정한다. 다툼이 생겼을 때, 기억이 다를 때, 이해관계가 판단을 흐릴 때 — 우리는 이 조문으로 돌아온다.
 
 > The Constitution exists to preserve the House. It defines what must not change even when the people, funds and markets change.
 
 ## Part I. Constitution of the House
 
-*— Book 0 Chapter 1(The House)의 제도화*
+*취지: House의 정체성과 헌법의 지위를 고정한다 (Book 0 Ch.1).*
 
 **제1조 (Identity of the House)** NEXTON은 단순한 법인이 아니라 House이다. House는 사람보다 오래 존재하는 원칙의 공동체이며, 모든 제도는 House의 지속성을 위해 존재한다.
 
@@ -279,7 +247,7 @@ NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리�
 
 ## Part II. Constitution of Membership
 
-*— Book 0 Chapter 3(Partnership)·Chapter 5(Opportunity)의 제도화*
+*취지: "함께 운영하는 사람"과 "지분을 가진 사람"을 분리한다. 이 분리가 무너지면 지분이 남은 비활동 주주가 하우스를 지배하게 된다 (Book 0 Ch.3, Ch.5).*
 
 **제4조 (Membership)** Membership은 House를 현재 함께 운영하는 공동체를 의미한다. Membership은 Ownership과 구분되며, 현재의 책임과 활동을 전제로 유지된다.
 
@@ -297,7 +265,7 @@ NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리�
 
 ## Part III. Constitution of Governance
 
-*— Book 0 Chapter 4(Stewardship)의 제도화*
+*취지: 권한을 목적별로 분리하여 어떤 개인에게도 집중되지 않게 한다 (Book 0 Ch.4, Ch.7 제6금지).*
 
 **제10조 (Purpose of Governance)** Governance의 목적은 권력을 행사하는 것이 아니라 House를 보호하는 것이다.
 
@@ -317,7 +285,7 @@ NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리�
 
 ## Part IV. Constitution of Capital
 
-*— Book 0 Chapter 5(Opportunity)·Chapter 6(Excellence)의 제도화*
+*취지: 서로 다른 위험에는 서로 다른 보상이 대응한다. 범주가 섞이는 순간 — 지분이 노동의 대가가 되고, Carry가 소유의 권리가 되는 순간 — 분쟁이 시작된다 (Book 0 Ch.5, Ch.6).*
 
 **제16조 (Constitutional Identity of Capital)** NEXTON의 자본은 Ownership, House Capital, Partner Capital으로 구분하며 각각의 목적과 권리는 독립적으로 유지된다.
 
@@ -331,7 +299,7 @@ NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리�
 
 **제21조 (GP Commit)** GP Commit은 House와 Membership의 장기적 Commitment를 표현하는 공동 자본이다. GP Commit은 투자이며 수익은 투자자에게 귀속된다.
 
-### Constitutional Principles
+**헌법적 원칙.**
 
 - Ownership과 Membership은 구분한다.
 - 배당과 Carry는 서로 다른 경제적 권리이다.
@@ -340,7 +308,7 @@ NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리�
 
 ## Part V. Constitution of Relationship & Strategic Capital
 
-*— Book 0 Chapter 3(Partnership)·Chapter 7(Prohibitions)의 제도화. NEXTON 헌법(KR) 초안 제8~10장을 통합·재배치.*
+*취지: 관계와 예산의 사유화를 막는다. 관계가 개인의 것이 되면 하우스의 소싱 능력은 개인의 퇴사와 함께 사라진다 (Book 0 Ch.3, Ch.7 제2금지).*
 
 **제22조 (관계 자본)** 관계는 개인의 자산이 아니라 House의 자산이다. 어떠한 구성원도 특정 관계의 독점권을 주장할 수 없다.
 
@@ -366,6 +334,8 @@ NEXTON은 소수지분 투자자가 아니라 경영권 투자자이다. 우리�
 
 *철학적 근거: Book 0 Ch.5 Opportunity, Ch.6 Excellence, Ch.9 Investment Doctrine / 헌법적 근거: Book 1 Part IV, Part VI*
 
+Book 2는 헌법 Part IV의 원칙을 숫자로 구현한다. 여기의 수치는 시장과 조직의 변화에 따라 개정될 수 있으나, 개정은 Managing Partner Meeting의 만장일치와 헌법 적합성 검토를 거친다.
+
 ## 2.1 위험과 보상의 분리
 
 NEXTON은 보상 중심 조직이 아니라 파트너십 institution으로 설계한다. 핵심 원칙은 **위험, 책임, 장기적 Commitment를 각각 분리하여 보상하는 것**이며, 서로 다른 범주를 섞지 않는다.
@@ -378,6 +348,8 @@ NEXTON은 보상 중심 조직이 아니라 파트너십 institution으로 설�
 | 투자 성과 | Carry |
 | 장기 책임 (Stewardship) | Governance 권한·의결권 |
 | 신뢰 | 기회 |
+
+이 표가 왜 중요한가. 분쟁의 대부분은 범주의 혼동에서 나온다. "내가 이만큼 일했으니 지분을 더 달라"(노동↔소유의 혼동), "내 지분이 있으니 Carry를 달라"(소유↔성과의 혼동). 표의 행을 섞지 않으면 이 분쟁의 대부분이 애초에 성립하지 않는다.
 
 ## 2.2 Equity — 확정 구조
 
@@ -409,11 +381,11 @@ NEXTON은 보상 중심 조직이 아니라 파트너십 institution으로 설�
 
 - 참여 대상: Principal, Director 및 투자 전문인력.
 - 가중치 예시: Principal 2 units, Director 1 unit.
-- 목적은 파트너십의 안정성을 훼손하지 않으면서 동기부여와 retention을 확보하는 것이다.
+- 목적은 파트너십의 안정성을 훼손하지 않으면서 동기부여와 retention을 확보하는 것이다. 여기는 Merit의 영역이다(Book 0 Ch.6).
 
 ## 2.5 Firm Management Pool
 
-Firm Management Pool은 투자 성과의 보상이 아니라 House 인프라에 대한 보상이다. 보상 대상: 펀드 관리(Fund Administration), 준법(Compliance), 감사 대응, LP 실사 지원, 규제 대응, 재무·회계 인프라. COO는 이 Pool에 참여할 수 있다.
+Firm Management Pool은 투자 성과의 보상이 아니라 House 인프라에 대한 보상이다. 펀드는 투자로만 굴러가지 않는다 — 펀드 관리(Fund Administration), 준법(Compliance), 감사 대응, LP 실사 지원, 규제 대응, 재무·회계 인프라가 하우스의 신뢰를 지탱한다. COO는 이 Pool에 참여할 수 있다.
 
 ## 2.6 GP Commit과 SPC
 
@@ -448,7 +420,7 @@ NEXTON PARTNERS는 다음 구조로 출범한다.
 
 ## 3.2 Title Architecture
 
-Career, Membership(Ownership Status), Corporate Role은 서로 다른 체계이다(Core Doctrine).
+Career, Membership(Ownership Status), Corporate Role은 서로 다른 체계이다(Core Doctrine). 세 축을 분리하는 이유는 명확하다. 직급이 오른다고 자동으로 파트너가 되는 것이 아니고(Career ≠ Membership), 지분이 있다고 자동으로 경영하는 것이 아니다(Ownership ≠ Role).
 
 | 축 | 구성 |
 |---|---|
@@ -465,7 +437,7 @@ Career, Membership(Ownership Status), Corporate Role은 서로 다른 체계이�
 - Managing Partner는 동일한 지위(권리·책임)를 가지나 동일한 역할을 수행할 필요는 없다.
 - Admission 기준은 엄격하게, Admission 이후의 평등은 강하게 유지한다. 입회 이후에는 개별 딜 기여를 비교하지 않는다.
 - Founder는 역사이고 Managing Partner는 현재의 책임이다. 창업은 기억하되 특권화하지 않는다.
-- 장기적으로 제3의 Managing Partner Admission을 지향한다(Book 2의 장기 지분 구조 참조). 2인 체제는 출발점이지 완성형이 아니다.
+- 장기적으로 제3의 Managing Partner Admission을 지향한다(Book 2 §2.2). 2인 체제는 출발점이지 완성형이 아니다.
 
 ## 3.4 의사결정 구조
 
@@ -485,7 +457,7 @@ Career, Membership(Ownership Status), Corporate Role은 서로 다른 체계이�
 
 ## 3.6 승계 (Succession)
 
-별도의 승계 정책으로 다음을 다룬다: 은퇴, 사망, 장애, Managing Partner의 탈퇴, 차세대 파트너의 입회. House는 어떤 개인보다도 오래 존속해야 한다(헌법 제1조).
+별도의 승계 정책으로 다음을 다룬다: 은퇴, 사망, 장애, Managing Partner의 탈퇴, 차세대 파트너의 입회. House는 어떤 개인보다도 오래 존속해야 한다(헌법 제1조). 승계는 위기가 왔을 때 만드는 것이 아니라, 위기가 오기 전에 준비하는 것이다.
 
 ---
 
@@ -528,7 +500,20 @@ Career, Membership(Ownership Status), Corporate Role은 서로 다른 체계이�
 
 # Book 5 — Casebook
 
-*(미집필 — 실제 의사결정 사례가 축적되는 대로 Seven Questions를 기준으로 기록한다.)*
+Casebook은 원칙이 현실과 부딪힌 기록이다. 철학은 선언으로 완성되지 않고 사례로 검증된다. 모든 회수 완료 딜, 그리고 원칙이 시험대에 올랐던 모든 의사결정은 다음 양식으로 기록한다.
+
+## 딜 복기 템플릿
+
+1. **딜 개요**: 딜명 / 시기 / 규모 / 구조(지분율).
+2. **Investment Thesis (IC 시점)**: 당시 문서화된 투자 논거 원문.
+3. **The Three Questions 통과 근거**: 글로벌 확장성 / 현금흐름의 질 / 경영권 — 각각 당시의 판단.
+4. **다운사이드 예상 vs 실제**: 무엇을 걱정했고, 실제로 무엇이 일어났는가.
+5. **Value Creation 실행**: Day-one 계획 대비 실제 실행.
+6. **결과**: 회수 성과(DPI, IRR) 및 정성적 결과.
+7. **교훈**: 다시 한다면 무엇을 다르게 할 것인가. 원칙 중 시험대에 올랐던 것은 무엇인가.
+8. **Seven Questions 점검**: 이 딜의 전 과정은 NEXTON다웠는가.
+
+*(기록은 1호 딜부터 시작한다. 실패한 검토 — IC 부결, 막판 철회 — 도 기록 대상이다. 부결의 이유가 하우스의 원칙을 가장 선명하게 보여준다.)*
 
 ---
 
@@ -536,12 +521,15 @@ Career, Membership(Ownership Status), Corporate Role은 서로 다른 체계이�
 
 ## A. Design History (설계 이력)
 
-- Founder는 역사만 남기고 특권은 부여하지 않기로 결정.
-- Managing Partner 간 공로 계산 금지를 원칙화.
-- 관계를 회사 자산으로 정의.
-- 사람이 아니라 전략에 자본을 배정하는 원칙 수립.
-- GP Commit, 지분, SPC, Managing Partner를 모두 "기회의 부여"로 정의.
-- Carry 기본안을 운용역 60% / 회사 40%로 설정.
+설계 과정에서 확정된 결정들. 각 결정의 이유는 본문에 통합되어 있다.
+
+- Founder는 역사만 남기고 특권은 부여하지 않기로 결정 (Book 0 Ch.7 제3금지).
+- Managing Partner 간 공로 계산 금지를 원칙화 (Book 0 Ch.3).
+- 관계를 회사 자산으로 정의 (헌법 제22조).
+- 사람이 아니라 전략에 자본을 배정하는 원칙 수립 (헌법 제23조).
+- GP Commit, 지분, SPC, Managing Partner를 모두 "기회의 부여"로 정의 (Book 0 Ch.5).
+- Carry 기본안을 운용역 60% / 회사 40%로 설정 (Book 2 §2.3).
+- 설립 지분 구조를 45/45/10으로 확정, MP Carry Pool 균등 배분 확정 (Edition 1.2).
 
 ## B. Glossary
 
@@ -564,14 +552,14 @@ Career, Membership(Ownership Status), Corporate Role은 서로 다른 체계이�
 
 ## C. Writing Roadmap
 
-- [x] Book 0 집필 완료 (+ Ch.9 Investment Doctrine)
-- [x] Book 1 정리 (Part I–VI 통합)
+- [x] Book 0 집필 완료 (Ch.1–9, 산문 개편)
+- [x] Book 1 정리 (Part I–VI, 취지 주석 추가)
 - [x] Book 2 정식화 (설립 구조 확정 반영)
 - [x] Book 3 정식화 (설립 구조 확정 반영)
 - [ ] Book 4 정식 집필 (초안 보강 완료)
-- [ ] Book 5 집필 (1호 딜 복기부터 기록 시작)
+- [x] Book 5 구조 수립 (복기 템플릿) — 사례 기록은 1호 딜부터
 - [ ] Founders Agreement / 주주간계약 체결 (초안: `nexton-founders-termsheet.md`)
-- [ ] Edition 2 편집
+- [ ] Edition 3 편집
 
 ## D. Founding Profile — NEXTON PARTNERS (2026)
 
@@ -606,3 +594,9 @@ Career, Membership(Ownership Status), Corporate Role은 서로 다른 체계이�
 - Growth/Scale-up: 블라인드펀드 2개 약정총액 약 1,930억 원 (Expert Growth 1호 720억·Fund Multiple 1.32x, 2호 1,210억·운용 중).
 
 > 유의: 상기 실적은 창립 운용역이 전 소속 기관에서 수행한 것으로, NEXTON PARTNERS의 실적이 아니다. 대외 자료 사용 시 이 구분을 유지한다(Book 0 Ch.2 — Trust).
+
+## E. Edition History
+
+- **Edition 1.0–1.1**: 병합 드래프트(v0.1–v0.22 + 헌법·블루프린트)의 중복 제거, Book 구조 재배치, 문체 통일, 철학-제도 연결.
+- **Edition 1.2**: 설립 확정 사항 반영(45/45/10, Co-CEO 2인 + COO/Equity Partner, 프로젝트 펀드 우선). Book 0 Ch.9 Investment Doctrine 신설. Founders Term Sheet 분리.
+- **Edition 2.0 (전면 개편)**: 설립자가 처음부터 끝까지 읽고 운영철학을 이해할 수 있도록 전체를 산문 중심으로 재집필. 서문("이 책을 읽는 법") 신설. 각 원칙에 "왜 이 원칙이 존재하는가"(막으려는 실패)를 명시. 헌법 각 Part에 취지 주석 추가. Book 5 복기 템플릿 수립. 기존 원칙·조문·수치는 전부 보존.
