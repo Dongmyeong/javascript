@@ -117,7 +117,7 @@ House는 어떤 개인보다 오래 존속한다(헌법 제1조). 승계는 위�
 ### 5. 차세대 Admission
 
 - Partner Admission은 성과뿐 아니라 신뢰·철학·책임을 기준으로 하며(헌법 제7조), 신주 발행으로 지분을 취득한다.
-- Managing Partner Appointment는 만장일치로 하며(헌법 제8조), 장기적으로 MP 3인 각 약 31~32% 지분 구조를 지향한다.
+- Managing Partner Appointment는 만장일치로 한다(헌법 제8조). 신규 Admission의 지분 규모와 조건은 그 시점의 MP Meeting이 만장일치로 정한다.
 - Admission은 엄격하게, Admission 이후의 평등은 강하게.
 
 ### 6. 탈퇴와 Membership 종료
