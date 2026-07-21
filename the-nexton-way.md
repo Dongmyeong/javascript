@@ -75,7 +75,7 @@ NEXTON은 개인의 성공을 극대화하기 위한 조직이 아니다. House�
 
 왜 계산하지 않는가. 계산이 불가능하기 때문이다. 성공한 바이아웃 하나를 분해해 보라. 딜을 소싱한 사람, 구조를 설계한 사람, LP를 설득한 사람, 인수 후 3년간 회사를 운영한 사람, 매각 타이밍을 잡은 사람 — 이 중 누구의 기여가 몇 퍼센트인가? 정답이 없는 질문에 답을 강요하는 순간, 파트너십은 회계 장부가 되고 동료는 채권자가 된다. 공로 계산은 공정을 만드는 것이 아니라 분쟁을 만든다.
 
-그래서 우리는 계산 대신 선택을 한다. Managing Partner가 된다는 것은 **공동 운명을 선택**하는 것이다. 공동의 성공은 함께 공유하고, 공동의 실패는 함께 부담한다. Managing Partner 간 지분이 동일한 것, Carry의 Managing Partner 유닛이 동일한 것은 이 선택의 경제적 표현이다.
+그래서 우리는 계산 대신 선택을 한다. Managing Partner가 된다는 것은 **공동 운명을 선택**하는 것이다. 공동의 성공은 함께 공유하고, 공동의 실패는 함께 부담한다. Carry의 Managing Partner 유닛이 서로 동일한 것, MP Meeting에서 지분과 무관하게 동등한 의결권을 갖는 것은 이 선택의 제도적 표현이다. 지분은 여기에 포함되지 않는다 — 지분은 공동 운명의 표현이 아니라 출자의 대가다(제9장).
 
 다만 NEXTON은 Merit와 Partnership을 구분한다. Investment Team은 성과를 통해 성장하며 경제적 차등 보상을 받는다 — 여기는 Merit의 영역이고, 경쟁은 건강하다. Managing Partner는 다르다. 공동 운명을 선택한 이후에는 House의 장기적 성공을 우선한다. 파트너십은 성과 경쟁을 부정하는 것이 아니라, **성과 경쟁이 끝나는 지점을 정의**하는 것이다.
 
@@ -85,7 +85,7 @@ NEXTON은 개인의 성공을 극대화하기 위한 조직이 아니다. House�
 
 ## 4. 불일치와 갈등 — 파트너십을 죽이는 것은 교착이 아니라 원한이다
 
-우리는 일부러 싸우면 멈추는 구조를 선택했다. Managing Partner 간 동일한 지분, 중요 사항 만장일치. 이 구조의 의미는 명확하다. **상대를 설득하지 못하면 하우스는 움직이지 않는다.** 이것은 결함이 아니라 설계다 — 둘 중 하나라도 확신하지 못하는 결정으로 하우스를 움직이지 않겠다는 선언이다.
+우리는 일부러 싸우면 멈추는 구조를 선택했다. 중요 사항 만장일치 — 각 Managing Partner가 지분과 무관하게 거부권을 갖는 구조다. 이 구조의 의미는 명확하다. **상대를 설득하지 못하면 하우스는 움직이지 않는다.** 이것은 결함이 아니라 설계다 — 둘 중 하나라도 확신하지 못하는 결정으로 하우스를 움직이지 않겠다는 선언이다.
 
 이 구조가 작동하려면 네 가지 규범이 필요하다.
 
@@ -200,7 +200,7 @@ NEXTON은 이 분쟁을 하나의 원칙으로 차단한다. **서로 다른 위
 ### 지분 (Equity)
 
 - Equity는 Ownership을 표현하며, 개별 거래 기여의 보상이 아니다. 지분은 소유권이며 노동의 대가가 아니다.
-- **Managing Partner 간 지분은 동일하다.** 공로 계산 금지(제3장)의 자본 구조적 표현이다. 시점별 구체적 지분율은 원칙이 아니라 사실이므로 본문에 두지 않는다 — 부록 C(Founding Profile)와 계약이 정한다.
+- **MP 간 동일해야 하는 것은 지분이 아니라 지위·책임·유닛·의결권이다.** 지분은 출자의 대가이므로(헌법 제17조) 출자의 시점과 조건에 따라 사람마다 다를 수 있다. 창업 MP들의 지분이 서로 같은 것은 같은 시점에 같은 조건으로 출자했기 때문이지 MP이기 때문이 아니다. 후발 MP의 지분 규모·조건은 그 시점의 MP Meeting 만장일치로 정하며, 시점별 구체적 지분율은 부록 C(Founding Profile)와 계약이 정한다.
 - 신규 파트너는 구주 매매(secondary)가 아니라 **신주 발행**으로 진입한다. 기존 주주는 비례 희석을 수용한다.
 - 미래의 신규 Partner·Managing Partner의 지분 규모와 조건은 미리 정하지 않는다. **그 시점의 Managing Partner Meeting이 만장일치로 정한다** — 진입 방식(신주 발행)과 절차만 원칙으로 고정한다.
 - Equity Vesting은 5년으로 한다. 세부 조건은 Founders Agreement에서 정한다(`nexton-founders-termsheet.md`).
@@ -446,7 +446,7 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 
 **제5조 (Partner)** Partner는 House의 Membership이다. Partner는 직급이 아니며 House의 철학과 장기적 책임을 공유하는 구성원이다. 모든 Partner는 Ownership을 보유한다 — 지분 없는 Partner는 없다.
 
-**제6조 (Managing Partner)** Managing Partner는 Partner 중 House의 공동 운명을 현재 함께 부담하도록 Appointment된 사람이다. Managing Partner는 가장 높은 권리가 아니라 가장 큰 책임을 가진다. Managing Partner는 동일한 지위를 가지나 동일한 역할을 수행할 필요는 없다.
+**제6조 (Managing Partner)** Managing Partner는 Partner 중 House의 공동 운명을 현재 함께 부담하도록 Appointment된 사람이다. Managing Partner는 가장 높은 권리가 아니라 가장 큰 책임을 가진다. Managing Partner는 동일한 지위를 가지나 동일한 역할을 수행할 필요는 없다. Managing Partner의 동등은 지위·책임·Carry 유닛·Meeting 의결권의 동등이며, 지분의 동일을 요구하지 않는다.
 
 **제7조 (Admission)** Partner Admission은 승진이 아니라 House Membership으로의 입회이다. Admission은 성과뿐 아니라 신뢰, 철학, 책임을 기준으로 결정한다.
 
@@ -462,7 +462,7 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 
 **제11조 (Separation of Authority)** House Governance, Executive Governance, Investment Governance, Administrative Governance는 서로 독립적으로 운영한다.
 
-**제12조 (Managing Partner Meeting)** Managing Partner Meeting은 House의 최고 거버넌스 기구이며 철학, Membership, 승계 및 장기 전략을 결정한다. 신규 Managing Partner Admission, 신주 발행, 회사 매각, 정관·헌법 개정, Carry Policy 변경, 대표이사 선임·해임은 만장일치를 요한다.
+**제12조 (Managing Partner Meeting)** Managing Partner Meeting은 House의 최고 거버넌스 기구이며 철학, Membership, 승계 및 장기 전략을 결정한다. Meeting에서 각 Managing Partner는 지분과 무관하게 동등한 의결권을 가진다. 신규 Managing Partner Admission, 신주 발행, 회사 매각, 정관·헌법 개정, Carry Policy 변경, 대표이사 선임·해임은 만장일치를 요한다.
 
 **제13조 (Representative Directors)** 회사는 대표이사를 각자 대표로 둘 수 있다. 대표이사는 대외적으로 각자 회사를 대표하고 전략을 집행하되, 대내적으로는 본 헌법과 내부 프로세스를 따른다. 대표이사는 House를 소유하지 않으며 헌법을 변경할 권한을 갖지 않는다. 직책(Corporate Role)과 지위(Partnership)는 서로를 함의하지 않는다 — Managing Partner가 반드시 대표이사일 필요는 없으며, 그 역도 같다.
 
@@ -649,6 +649,7 @@ NEXTON은 다음 일곱 가지를 스스로에게 금지한다.
 - **Edition 3.20**: **개정 권한 체계 확립** — 헌법 제30조(개정) 신설: The NEXTON Way 실질 개정은 MP 만장일치 + 4주 숙려 + Edition History 기록, 정책집은 MP 만장일치, 계약은 당사자 전원 서면 합의, 정관은 주총 결의(사전 MP 만장일치 선행), 편집적 수정은 사후 보고, Casebook은 append-only(고쳐 쓰지 않는다). 부록 A에 개정 권한 표 추가.
 - **Edition 3.21**: **문체 원칙 확립 — "문서는 설득하지 않는다."** Edition 3.14의 긍정 문법을 재검토하여 되돌림: 배려·비교("많은 하우스는 다르지만")·위로의 언어는 권리를 호의처럼 보이게 하므로 제거하고, 규칙과 이유만 남긴다. 이유(막으려는 실패)는 규칙의 일부이므로 유지. 제5장 재집필(드라이), 제10장 광고성 문장 제거, "부담의 본질" → "부담의 성격"으로 사실 서술화.
 - **Edition 3.22**: **본문에서 구체 지분율(45:45:10) 제거** — 시점별 지분율은 원칙이 아니라 사실이므로 시점 고정 층(부록 C·계약)으로 이관. 본문에는 숫자 뒤의 원칙만 남김: "Managing Partner 간 지분은 동일하다"(공로 계산 금지의 자본 구조적 표현), 최초 GP Commit은 "지분 비율대로". 신주 발행이 일어나도 본문을 고칠 필요가 없는 상태 확보.
+- **Edition 3.23**: **"MP 간 지분 동일" 원칙 폐기 및 교정** — 3.22에서 세운 원칙이 범주 분리(지위 ≠ 소유)와 충돌함을 확인. 지분은 출자의 대가이므로 출자 시점·조건에 따라 다를 수 있다: 창업 MP의 동일 지분은 동일 출자의 결과이지 MP 지위의 요건이 아니다. **MP 간 동등의 실체는 지위·책임·Carry 유닛·Meeting 의결권**으로 재정의(헌법 제6조 보강). 헌법 제12조에 "각 MP는 지분과 무관하게 동등한 의결권" 명시 — 지분이 달라져도 거버넌스가 불변하도록 고정. 제4장 교착 구조 서술도 "지분과 무관한 1인 거부권"으로 정정.
 
 **남은 작업.**
 
