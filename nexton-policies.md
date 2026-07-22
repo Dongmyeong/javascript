@@ -1,4 +1,4 @@
-# NEXTON PARTNERS — 운영 정책집 (Operating Policies) v1.0
+# NEXTON PARTNERS — 운영 정책집 (Operating Policies) — Draft (공유 전 초안)
 
 > 본 정책집은 The NEXTON Way(철학·헌법)를 실행 규정으로 구체화한 문서다. 해석에 충돌이 있으면 헌법이 우선한다(헌법 제2조). 본 정책집의 제정·개정은 Managing Partner Meeting 만장일치에 의한다. `[협의]` 표시는 창업 파트너 간 확정 또는 외부 자문 검토가 필요한 항목이다.
 >

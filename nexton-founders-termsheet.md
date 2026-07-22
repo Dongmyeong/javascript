@@ -1,4 +1,4 @@
-# NEXTON PARTNERS — Founders Agreement & 주주간계약 Term Sheet (협상용 초안 v0.1)
+# NEXTON PARTNERS — Founders Agreement & 주주간계약 Term Sheet — Draft (협상용 초안)
 
 > 본 문서는 The NEXTON Way Master Manuscript(Book 1 헌법, Book 2–3)를 법률 문서로 구체화하기 위한 **협상용 초안**이다. 최종 문안은 법률 자문을 거쳐 확정한다. `[협의]` 표시는 창업자 간 합의 또는 자문 검토가 필요한 항목이다.
 >
