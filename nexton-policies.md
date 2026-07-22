@@ -177,6 +177,20 @@ Membership 종료와 Ownership의 존속은 서로 다른 문제이다(헌법 �
 
 ---
 
+## 제5편 — 전략 자본 운영 및 운영 관례
+
+### 1. 전략 자본 운영
+
+1. **배정**: 영업비는 개인이 아니라 전략에 배정한다(헌법 제23~24조). 전략 영역: LP Development, Deal Sourcing, Industry Network, Recruiting, Portfolio Support, Strategic Initiatives.
+2. **관리**: 관리본부 책임자가 예산 현황을 관리·보고하고 회의를 소집한다. 관리자이며 승인권자가 아니다(헌법 제25조).
+3. **증액**: 예산 초과 시 MP Meeting에서 추가 배정을 결정한다. 심사 기준은 관계의 중요성이 아니라 전략에 대한 자본 배분의 적정성이다(헌법 제26조).
+
+### 2. 명함·직함 표기
+
+- 대표이사 직책을 맡은 MP: `CEO | Managing Partner`.
+- 관리본부 책임자: `Partner`를 기본으로 하고, 등기 직위·대외 직함은 확정 후 병기한다. `[협의]`
+- "Equal Partner", "Co-Founder Partner"류의 표기는 주 타이틀로 사용하지 않는다.
+
 ## 부칙
 
 1. 본 정책집은 MP Meeting 만장일치로 제정·개정한다(헌법 제30조 제2항). 오탈자·표현 정리 등 편집적 수정은 MP Meeting 사후 보고로 갈음할 수 있다.
