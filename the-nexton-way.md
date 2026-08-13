@@ -277,7 +277,7 @@ NEXTON은 보상보다 기회를 분배하는 House를 지향한다. 보상을 �
 
 | 축 | 구성 |
 |---|---|
-| Career Ladder (고용·승진) | Analyst → Associate → Manager → Director → Principal — 투자본부·관리본부 공통 |
+| Career Ladder (고용·승진) | Analyst → Associate → Director → Principal — 투자본부·관리본부 공통 |
 | Partnership (입회·지명) | Partner (Admission) → Managing Partner (Appointment) |
 | Corporate Role (직책) | 각자 대표이사(CEO) — 확정. 기타 임원 직함(CIO·COO 등)은 필요 시 부여, 미확정 `[협의]` |
 
