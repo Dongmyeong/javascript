@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,8 +27,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -55,30 +56,38 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
+import com.dongmyeong.smsautoreply.AppController
 import com.dongmyeong.smsautoreply.data.AppState
-import com.dongmyeong.smsautoreply.data.ReplyLog
-import com.dongmyeong.smsautoreply.data.Rule
-import com.dongmyeong.smsautoreply.data.SettingsRepository
+import com.dongmyeong.smsautoreply.data.Conversation
+import com.dongmyeong.smsautoreply.data.LogEntry
+import com.dongmyeong.smsautoreply.data.RepeatMode
+import com.dongmyeong.smsautoreply.data.Scenario
+import com.dongmyeong.smsautoreply.data.TriggerType
+import com.dongmyeong.smsautoreply.engine.Schedule
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS)
+private val dateTimeFormat = DateTimeFormatter.ofPattern("M/d(E) HH:mm")
+private val logTimeFormat = DateTimeFormatter.ofPattern("MM/dd HH:mm")
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(repository: SettingsRepository) {
+fun HomeScreen(
+    state: AppState,
+    controller: AppController,
+    onAddScenario: () -> Unit,
+    onOpenScenario: (String) -> Unit,
+) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val state by repository.state.collectAsStateWithLifecycle(initialValue = AppState())
 
     var hasPermissions by remember { mutableStateOf(context.hasSmsPermissions()) }
     var ignoresBatteryOptimizations by remember { mutableStateOf(context.ignoresBatteryOptimizations()) }
-    var editingRule by remember { mutableStateOf<Rule?>(null) }
-    var showEditor by remember { mutableStateOf(false) }
+    var canExactAlarm by remember { mutableStateOf(controller.scheduler.canScheduleExact()) }
 
     // Re-check permissions/battery status whenever the user comes back from Settings.
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -86,24 +95,28 @@ fun HomeScreen(repository: SettingsRepository) {
         lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
             hasPermissions = context.hasSmsPermissions()
             ignoresBatteryOptimizations = context.ignoresBatteryOptimizations()
+            canExactAlarm = controller.scheduler.canScheduleExact()
         }
     }
 
+    var permissionRequestFailed by remember { mutableStateOf(false) }
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions(),
-    ) { result -> hasPermissions = result.values.all { it } }
+    ) { result ->
+        hasPermissions = result.values.all { it }
+        if (!hasPermissions) permissionRequestFailed = true
+    }
 
     Scaffold(
         topBar = { TopAppBar(title = { Text("문자 자동응답") }) },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = { editingRule = null; showEditor = true },
+                onClick = onAddScenario,
                 icon = { Icon(Icons.Default.Add, contentDescription = null) },
-                text = { Text("번호 추가") },
+                text = { Text("시나리오 추가") },
             )
         },
     ) { innerPadding ->
-        // Fold7's inner screen is ~8 inches; cap the width so the list doesn't stretch edge to edge.
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -117,9 +130,26 @@ fun HomeScreen(repository: SettingsRepository) {
                 item {
                     WarningCard(
                         title = "SMS 권한이 필요합니다",
-                        body = "문자를 읽고 답장을 보내려면 SMS 수신/전송 권한을 허용해야 합니다.",
+                        body = if (permissionRequestFailed) {
+                            "권한 창이 뜨지 않거나 바로 거부되면 Android의 '제한된 설정' 때문입니다. " +
+                                "아래 '앱 설정 열기' → 오른쪽 위 ⋮ 메뉴 → '제한된 설정 허용'을 누른 뒤, 권한 → SMS → 허용으로 바꿔 주세요."
+                        } else {
+                            "문자를 읽고 답장을 보내려면 SMS 수신/전송 권한을 허용해야 합니다."
+                        },
                         actionLabel = "권한 허용",
                         onAction = { permissionLauncher.launch(REQUIRED_PERMISSIONS) },
+                        secondaryLabel = "앱 설정 열기",
+                        onSecondary = { context.openAppDetails() },
+                    )
+                }
+            }
+            if (!canExactAlarm) {
+                item {
+                    WarningCard(
+                        title = "정확한 시각 알람 권한 권장",
+                        body = "예약 문자를 정확한 시각에 보내려면 '알람 및 리마인더' 권한이 필요합니다. 없으면 몇 분 늦게 갈 수 있습니다.",
+                        actionLabel = "설정 열기",
+                        onAction = { context.requestExactAlarmPermission() },
                     )
                 }
             }
@@ -145,7 +175,7 @@ fun HomeScreen(repository: SettingsRepository) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text("자동응답", style = MaterialTheme.typography.titleMedium)
                             Text(
-                                if (state.enabled) "켜짐 · 등록된 번호에 자동으로 답장합니다" else "꺼짐",
+                                if (state.enabled) "켜짐 · 시나리오대로 문자를 보내고 답장에 반응합니다" else "꺼짐 · 아무 문자도 보내지 않습니다",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -153,42 +183,44 @@ fun HomeScreen(repository: SettingsRepository) {
                         Switch(
                             checked = state.enabled,
                             enabled = hasPermissions,
-                            onCheckedChange = { on ->
-                                scope.launch { repository.update { it.copy(enabled = on) } }
-                            },
+                            onCheckedChange = { on -> scope.launch { controller.setEnabled(on) } },
                         )
                     }
                 }
             }
 
-            item { SectionTitle("대상 번호 (${state.rules.size})") }
+            if (state.conversations.isNotEmpty()) {
+                item { SectionTitle("진행 중인 대화 (${state.conversations.size})") }
+                items(state.conversations, key = { "conv-" + it.id }) { conversation ->
+                    ConversationCard(
+                        conversation = conversation,
+                        scenario = state.scenarios.firstOrNull { it.id == conversation.scenarioId },
+                        onEnd = { scope.launch { controller.endConversation(conversation.id) } },
+                    )
+                }
+            }
 
-            if (state.rules.isEmpty()) {
+            item { SectionTitle("시나리오 (${state.scenarios.size})") }
+
+            if (state.scenarios.isEmpty()) {
                 item {
                     Text(
-                        "아직 등록된 번호가 없습니다. 오른쪽 아래 버튼으로 추가하세요.",
+                        "아직 시나리오가 없습니다. 오른쪽 아래 버튼으로 추가하세요.\n\n" +
+                            "시나리오 = 상대 한 명 + 시작 방식(예약 시각 또는 문자 수신) + 단계별 문구와 답장 규칙",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }
 
-            items(state.rules, key = { it.id }) { rule ->
-                RuleCard(
-                    rule = rule,
-                    onToggle = { on ->
-                        scope.launch {
-                            repository.update { s ->
-                                s.copy(rules = s.rules.map { if (it.id == rule.id) it.copy(enabled = on) else it })
-                            }
-                        }
-                    },
-                    onEdit = { editingRule = rule; showEditor = true },
-                    onDelete = {
-                        scope.launch {
-                            repository.update { s -> s.copy(rules = s.rules.filterNot { it.id == rule.id }) }
-                        }
-                    },
+            items(state.scenarios, key = { "sc-" + it.id }) { scenario ->
+                ScenarioCard(
+                    scenario = scenario,
+                    running = state.conversations.any { it.scenarioId == scenario.id },
+                    onToggle = { on -> scope.launch { controller.setScenarioEnabled(scenario.id, on) } },
+                    onOpen = { onOpenScenario(scenario.id) },
+                    onRunNow = { scope.launch { controller.runScenarioNow(scenario.id) } },
+                    masterEnabled = state.enabled,
                 )
             }
 
@@ -199,9 +231,7 @@ fun HomeScreen(repository: SettingsRepository) {
                 ) {
                     SectionTitle("최근 기록", modifier = Modifier.weight(1f))
                     if (state.log.isNotEmpty()) {
-                        TextButton(onClick = {
-                            scope.launch { repository.update { it.copy(log = emptyList(), lastReplied = emptyMap()) } }
-                        }) { Text("기록 지우기") }
+                        TextButton(onClick = { scope.launch { controller.clearLog() } }) { Text("기록 지우기") }
                     }
                 }
             }
@@ -222,23 +252,6 @@ fun HomeScreen(repository: SettingsRepository) {
             }
         }
     }
-
-    if (showEditor) {
-        RuleEditorDialog(
-            initial = editingRule,
-            onDismiss = { showEditor = false },
-            onSave = { saved ->
-                showEditor = false
-                scope.launch {
-                    repository.update { s ->
-                        val exists = s.rules.any { it.id == saved.id }
-                        val rules = if (exists) s.rules.map { if (it.id == saved.id) saved else it } else s.rules + saved
-                        s.copy(rules = rules)
-                    }
-                }
-            },
-        )
-    }
 }
 
 @Composable
@@ -252,7 +265,14 @@ private fun SectionTitle(text: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun WarningCard(title: String, body: String, actionLabel: String, onAction: () -> Unit) {
+private fun WarningCard(
+    title: String,
+    body: String,
+    actionLabel: String,
+    onAction: () -> Unit,
+    secondaryLabel: String? = null,
+    onSecondary: (() -> Unit)? = null,
+) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
@@ -262,59 +282,145 @@ private fun WarningCard(title: String, body: String, actionLabel: String, onActi
             Spacer(Modifier.height(4.dp))
             Text(body, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onErrorContainer)
             Spacer(Modifier.height(8.dp))
-            Button(onClick = onAction) { Text(actionLabel) }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(onClick = onAction) { Text(actionLabel) }
+                if (secondaryLabel != null && onSecondary != null) {
+                    TextButton(onClick = onSecondary) { Text(secondaryLabel) }
+                }
+            }
         }
     }
 }
 
 @Composable
-private fun RuleCard(rule: Rule, onToggle: (Boolean) -> Unit, onEdit: () -> Unit, onDelete: () -> Unit) {
-    Card(modifier = Modifier.fillMaxWidth()) {
+private fun ScenarioCard(
+    scenario: Scenario,
+    running: Boolean,
+    masterEnabled: Boolean,
+    onToggle: (Boolean) -> Unit,
+    onOpen: () -> Unit,
+    onRunNow: () -> Unit,
+) {
+    Card(modifier = Modifier.fillMaxWidth().clickable(onClick = onOpen)) {
         Column(modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 12.dp, bottom = 8.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(modifier = Modifier.weight(1f)) {
+                    Text(scenario.name, style = MaterialTheme.typography.titleMedium)
                     Text(
-                        rule.label.ifBlank { rule.phoneNumber },
-                        style = MaterialTheme.typography.titleMedium,
+                        buildString {
+                            append(scenario.contactLabel.ifBlank { scenario.contactNumber })
+                            if (scenario.contactLabel.isNotBlank()) append(" · ").append(scenario.contactNumber)
+                        },
+                        style = MaterialTheme.typography.bodySmall,
                     )
-                    if (rule.label.isNotBlank()) {
-                        Text(rule.phoneNumber, style = MaterialTheme.typography.bodySmall)
+                }
+                Switch(checked = scenario.enabled, onCheckedChange = onToggle)
+            }
+            Spacer(Modifier.height(6.dp))
+            Text(scenario.triggerSummary(), style = MaterialTheme.typography.bodyMedium)
+            Text(
+                "${scenario.nodes.size}단계" + if (running) " · 진행 중" else "",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            if (scenario.trigger.type == TriggerType.SCHEDULED) {
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                    TextButton(onClick = onRunNow, enabled = masterEnabled && scenario.enabled) {
+                        Icon(Icons.Default.PlayArrow, contentDescription = null)
+                        Spacer(Modifier.width(4.dp))
+                        Text("지금 바로 시작")
                     }
                 }
-                Switch(checked = rule.enabled, onCheckedChange = onToggle)
-            }
-            Spacer(Modifier.height(8.dp))
-            Text(rule.replyMessage, style = MaterialTheme.typography.bodyMedium)
-            Spacer(Modifier.height(4.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    "같은 번호에 ${rule.cooldownMinutes}분마다 최대 1회",
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                IconButton(onClick = onEdit) { Icon(Icons.Default.Edit, contentDescription = "수정") }
-                IconButton(onClick = onDelete) { Icon(Icons.Default.Delete, contentDescription = "삭제") }
             }
         }
     }
 }
 
 @Composable
-private fun LogRow(entry: ReplyLog) {
-    val formatter = remember { SimpleDateFormat("MM/dd HH:mm", Locale.KOREA) }
+private fun ConversationCard(conversation: Conversation, scenario: Scenario?, onEnd: () -> Unit) {
+    val node = scenario?.node(conversation.currentNodeId)
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+    ) {
+        Row(
+            modifier = Modifier.padding(start = 16.dp, end = 8.dp, top = 12.dp, bottom = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(scenario?.name ?: "(삭제된 시나리오)", style = MaterialTheme.typography.titleSmall)
+                Text(
+                    "현재 단계: ${node?.title?.ifBlank { null } ?: node?.message?.take(20) ?: conversation.currentNodeId}",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                val since = Instant.ofEpochMilli(conversation.startedAtMillis).atZone(ZoneId.systemDefault()).format(dateTimeFormat)
+                val timeout = conversation.timeoutAtMillis?.let {
+                    " · 대기 마감 " + Instant.ofEpochMilli(it).atZone(ZoneId.systemDefault()).format(dateTimeFormat)
+                } ?: ""
+                Text(
+                    "시작 $since · 보낸 문자 ${conversation.sentCount}개$timeout",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            TextButton(onClick = onEnd) { Text("종료") }
+        }
+    }
+}
+
+@Composable
+private fun LogRow(entry: LogEntry) {
     Column(modifier = Modifier.padding(vertical = 8.dp)) {
         Row {
             Text(
-                formatter.format(Date(entry.timestampMillis)),
+                Instant.ofEpochMilli(entry.timestampMillis).atZone(ZoneId.systemDefault()).format(logTimeFormat),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Spacer(Modifier.width(6.dp))
-            Text(entry.sender, style = MaterialTheme.typography.labelMedium)
+            Text(entry.contact, style = MaterialTheme.typography.labelMedium)
+            Spacer(Modifier.width(6.dp))
+            Text(
+                entry.kind,
+                style = MaterialTheme.typography.labelMedium,
+                color = when (entry.kind) {
+                    "보냄" -> MaterialTheme.colorScheme.primary
+                    "받음" -> MaterialTheme.colorScheme.tertiary
+                    "실패" -> MaterialTheme.colorScheme.error
+                    else -> MaterialTheme.colorScheme.onSurfaceVariant
+                },
+            )
         }
-        Text(entry.incomingPreview, style = MaterialTheme.typography.bodyMedium)
-        Text(entry.result, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
+        Text(entry.text, style = MaterialTheme.typography.bodyMedium)
+    }
+}
+
+fun Scenario.triggerSummary(nowMillis: Long = System.currentTimeMillis()): String {
+    val zone = ZoneId.systemDefault()
+    return when (trigger.type) {
+        TriggerType.ON_INCOMING -> buildString {
+            append("상대 문자를 받으면 시작")
+            val from = trigger.activeFromMinute
+            val to = trigger.activeToMinute
+            if (from != null && to != null) append(" · ${formatMinuteOfDay(from)}~${formatMinuteOfDay(to)}에만")
+        }
+
+        TriggerType.SCHEDULED -> {
+            val next = Schedule.nextFireTime(trigger, nowMillis, zone)
+            val repeatText = when (trigger.repeat) {
+                RepeatMode.NONE -> "한 번"
+                RepeatMode.DAILY -> "매일 ${formatMinuteOfDay(trigger.minuteOfDay)}"
+                RepeatMode.WEEKLY -> "매주 " + trigger.daysOfWeek.sorted().joinToString("") { Schedule.dayName(it) } +
+                    " ${formatMinuteOfDay(trigger.minuteOfDay)}"
+            }
+            val nextText = when {
+                !enabled -> "꺼짐"
+                next == null && trigger.repeat == RepeatMode.NONE -> "예약 시각 지남"
+                next == null -> "요일 미선택"
+                else -> "다음 발송 " + Instant.ofEpochMilli(next).atZone(zone).format(dateTimeFormat)
+            }
+            "예약 발송 · $repeatText · $nextText"
+        }
     }
 }
 
@@ -331,5 +437,19 @@ private fun Context.requestIgnoreBatteryOptimizations() {
     } catch (e: Exception) {
         // Some OEM builds hide the direct dialog; fall back to the general list.
         startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))
+    }
+}
+
+private fun Context.openAppDetails() {
+    startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName")))
+}
+
+private fun Context.requestExactAlarmPermission() {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return
+    val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:$packageName"))
+    try {
+        startActivity(intent)
+    } catch (e: Exception) {
+        startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName")))
     }
 }

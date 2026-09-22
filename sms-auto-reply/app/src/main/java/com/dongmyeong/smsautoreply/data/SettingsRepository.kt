@@ -17,10 +17,9 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 /**
  * Persists [AppState] as a single JSON blob in Preferences DataStore.
  *
- * The whole state is small (a handful of rules and a capped log), so one
- * atomic document is simpler and safer than several keys: the receiver and the
- * UI can both call [update] without clobbering each other because DataStore
- * serialises writes.
+ * The whole state is small, so one atomic document is simpler and safer than
+ * several keys: receivers and the UI can all call [update]/[transact] without
+ * clobbering each other because DataStore serialises writes.
  */
 class SettingsRepository(context: Context) {
     private val store = context.applicationContext.dataStore
@@ -34,10 +33,22 @@ class SettingsRepository(context: Context) {
     suspend fun current(): AppState = state.first()
 
     suspend fun update(transform: (AppState) -> AppState) {
+        transact { state -> transform(state) to Unit }
+    }
+
+    /** Atomically transform the state and return a side value (e.g. actions to perform afterwards). */
+    suspend fun <R> transact(transform: (AppState) -> Pair<AppState, R>): R {
+        var result: R? = null
+        var produced = false
         store.edit { prefs ->
-            val next = transform(decode(prefs[KEY_STATE]))
+            val (next, r) = transform(decode(prefs[KEY_STATE]))
             prefs[KEY_STATE] = json.encodeToString(AppState.serializer(), next)
+            result = r
+            produced = true
         }
+        check(produced) { "DataStore edit did not run" }
+        @Suppress("UNCHECKED_CAST")
+        return result as R
     }
 
     private fun decode(raw: String?): AppState {
