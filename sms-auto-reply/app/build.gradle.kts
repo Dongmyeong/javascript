@@ -18,6 +18,18 @@ android {
         versionName = "1.0"
     }
 
+    signingConfigs {
+        // Fixed debug key committed to the repo so that APKs built on CI can be
+        // installed over each other on the phone (a fresh key per build would
+        // fail with a signature mismatch). Debug/personal use only.
+        getByName("debug") {
+            storeFile = rootProject.file("keystore/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
         release {
             // Personal side-loaded build: keep it simple and debuggable.

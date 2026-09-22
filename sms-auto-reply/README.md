@@ -11,7 +11,25 @@
 
 SMS 전용입니다. RCS(채팅+), 카카오톡 등 다른 메신저는 대상이 아닙니다.
 
-## 빌드 및 설치
+## 설치 방법 A: PC 없이 GitHub에서 APK 내려받기 (권장)
+
+`sms-auto-reply/` 아래 파일이 바뀌어 푸시되면 GitHub Actions가 자동으로 APK를 빌드해서
+저장소 **Releases** 의 `sms-auto-reply-latest` 프리릴리스에 올려 둡니다.
+
+1. 폰 브라우저로 이 저장소의 **Releases** 페이지를 열고 `SmsAutoReply-latest.apk` 를 내려받습니다.
+2. 다운로드한 파일을 탭해 설치합니다. 처음 한 번은 **설정 → 보안 → 출처를 알 수 없는 앱 설치**에서
+   사용 중인 브라우저(또는 내 파일 앱)에 설치 권한을 허용해야 합니다.
+3. 이후 코드가 바뀌면 같은 위치에서 새 APK를 내려받아 덮어 설치하면 됩니다.
+   서명 키를 저장소에 고정해 두었기 때문에(`keystore/debug.keystore`) 삭제 없이 업데이트 설치가 됩니다.
+
+빌드 상태는 저장소 **Actions** 탭의 "SMS Auto Reply APK" 워크플로에서 볼 수 있고,
+**Run workflow** 버튼으로 수동 빌드도 가능합니다.
+
+> 저장소에 들어 있는 디버그 키스토어는 개인용 사이드로드 편의를 위한 것입니다.
+> 같은 키로 서명된 APK는 누구나 만들 수 있으므로, 앱을 배포할 일이 생기면 별도의 릴리스 키를
+> GitHub Secrets로 관리하는 방식으로 바꿔야 합니다.
+
+## 설치 방법 B: Android Studio에서 직접 빌드
 
 1. [Android Studio](https://developer.android.com/studio) 최신 버전 설치
 2. Android Studio에서 **Open** → 이 `sms-auto-reply` 폴더 선택 → Gradle 동기화가 끝날 때까지 대기
