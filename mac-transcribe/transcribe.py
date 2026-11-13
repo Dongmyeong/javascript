@@ -22,6 +22,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import urllib.request
 
 AUDIO_EXTS = {".m4a", ".mp3", ".wav", ".aac", ".amr", ".ogg", ".opus", ".3gp", ".flac"}
 
@@ -129,6 +130,30 @@ def write_outputs(base, segments, diarized):
         json.dump(segments, fh, ensure_ascii=False, indent=2)
 
 
+SUMMARY_PROMPT = (
+    "다음은 회의 녹음 전사본입니다. 한국어로 간결하고 정확하게 정리하세요.\n"
+    "아래 형식(마크다운)을 그대로 지키세요:\n\n"
+    "## 핵심 요약\n- (3~6줄)\n\n"
+    "## 결정 사항\n- \n\n"
+    "## 할 일\n- [담당자/기한이 있으면 함께]\n\n"
+    "## 주요 쟁점·참고\n- \n\n"
+    "전사본에 없는 내용은 지어내지 마세요.\n\n---\n전사본:\n"
+)
+
+
+def summarize(text, model, host):
+    """Summarize a transcript with a local Ollama model (open source, on-device).
+    No extra Python dependency — plain HTTP."""
+    body = json.dumps({"model": model, "prompt": SUMMARY_PROMPT + text, "stream": False})
+    req = urllib.request.Request(
+        host.rstrip("/") + "/api/generate",
+        data=body.encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(req, timeout=1200) as resp:
+        return json.loads(resp.read().decode("utf-8")).get("response", "").strip()
+
+
 def process(path, args):
     base = os.path.splitext(path)[0]
     if os.path.exists(base + ".txt") and not args.force:
@@ -152,6 +177,17 @@ def process(path, args):
                 log(f"  (화자구분 건너뜀: {exc})")
         write_outputs(base, segments, diarized)
         log(f"완료 → {base}.txt / .srt / .json" + (" (화자구분 O)" if diarized else ""))
+        if args.summarize:
+            try:
+                log(f"[요약] {args.ollama_model} …")
+                with open(base + ".txt", encoding="utf-8") as fh:
+                    transcript = fh.read()
+                summary = summarize(transcript, args.ollama_model, args.ollama_host)
+                with open(base + ".summary.md", "w", encoding="utf-8") as fh:
+                    fh.write(summary + "\n")
+                log(f"요약 → {base}.summary.md")
+            except Exception as exc:  # noqa: BLE001
+                log(f"  (요약 건너뜀: {exc})")
     finally:
         try:
             os.remove(wav)
@@ -188,6 +224,11 @@ def main():
                     help="HuggingFace token to enable speaker diarization")
     ap.add_argument("--interval", type=float, default=10.0)
     ap.add_argument("--force", action="store_true", help="re-transcribe even if .txt exists")
+    ap.add_argument("--summarize", action="store_true",
+                    default=os.environ.get("SUMMARIZE", "").lower() in ("1", "true", "yes", "on"),
+                    help="also write <name>.summary.md via a local Ollama model")
+    ap.add_argument("--ollama-model", default=os.environ.get("OLLAMA_MODEL", "qwen2.5:7b"))
+    ap.add_argument("--ollama-host", default=os.environ.get("OLLAMA_HOST", "http://localhost:11434"))
     args = ap.parse_args()
 
     if args.watch:

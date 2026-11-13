@@ -75,8 +75,32 @@ cp vocab.example.txt vocab.txt
 - 더 빠른 GPU 전사를 원하면 **`mlx-whisper`**(Apple MLX, Metal 가속) 로 전사만
   교체할 수 있습니다. 화자 구분(pyannote)은 그대로 MPS로 돌립니다.
 
-## 다음 단계 (원하면 추가)
-- **자동 요약**: 전사본 → 회의 요약/할 일/결정사항 (로컬 Ollama 또는 Claude API)
-- 기존 openclaw 파이프라인에 이 전사 단계를 끼워넣기
+## 자동 요약 (로컬 Ollama, 오픈소스)
 
-필요하면 요약 단계도 붙여드립니다.
+전사본 → **회의 요약 / 결정사항 / 할 일 / 쟁점** 을 로컬 LLM으로 뽑습니다.
+온디바이스라 외부로 안 나가고 무료입니다.
+
+```bash
+# 1) Ollama 설치 + 모델 받기 (한국어 강한 모델 권장)
+brew install ollama
+ollama serve &              # 백그라운드 데몬
+ollama pull qwen2.5:7b      # 또는 exaone3.5:7.8b (LG, 한국어 특화), gemma2:9b
+
+# 2) 전사 + 요약 한 번에
+python transcribe.py --summarize "/path/미팅.m4a"
+#   또는 감시 모드에서
+SUMMARIZE=1 python transcribe.py --watch /Users/donoh/.openclaw/media/inbound
+```
+→ `미팅.summary.md` (요약) 가 추가로 생성됩니다.
+
+| 옵션 | 기본값 | 설명 |
+| --- | --- | --- |
+| `--summarize` / `SUMMARIZE=1` | off | 요약 생성 |
+| `--ollama-model` / `OLLAMA_MODEL` | `qwen2.5:7b` | 요약 모델 (`exaone3.5:7.8b` 등) |
+| `--ollama-host` / `OLLAMA_HOST` | `http://localhost:11434` | Ollama 주소 |
+
+> Ollama가 안 떠 있으면 요약만 자동 생략되고 전사는 정상 완료됩니다.
+
+## 다음 단계 (원하면 추가)
+- 기존 openclaw 파이프라인에 이 전사·요약 단계를 끼워넣기
+- 카카오톡 대화(.txt) 요약도 같은 요약기로 처리

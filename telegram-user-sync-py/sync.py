@@ -57,7 +57,9 @@ def env_bool(name, default):
 API_ID = int(os.environ.get("API_ID", "0") or "0")
 API_HASH = os.environ.get("API_HASH", "")
 TARGET = os.environ.get("TARGET", "")
-WATCH_DIR = os.environ.get("WATCH_DIR", "")
+# WATCH_DIR may be a single folder or a comma-separated list, e.g.
+#   /storage/emulated/0/Recordings,/storage/emulated/0/Download/KakaoTalk
+WATCH_DIRS = [d.strip() for d in os.environ.get("WATCH_DIR", "").split(",") if d.strip()]
 RECURSIVE = env_bool("WATCH_RECURSIVE", False)
 EXTS = [e.strip().lower() for e in os.environ.get(
     "WATCH_EXTENSIONS", ".m4a,.mp3,.amr,.aac,.wav,.ogg,.opus,.3gp").split(",") if e.strip()]
@@ -71,11 +73,13 @@ STATE_FILE = os.environ.get("STATE_FILE", os.path.join(BASE, ".sent-state.json")
 SESSION = os.path.join(BASE, "user")  # -> creates user.session
 LOCK_FILE = os.path.join(BASE, ".lock")
 
-for name, value in (("API_ID", API_ID), ("API_HASH", API_HASH),
-                    ("TARGET", TARGET), ("WATCH_DIR", WATCH_DIR)):
+for name, value in (("API_ID", API_ID), ("API_HASH", API_HASH), ("TARGET", TARGET)):
     if not value:
         print(f"설정 누락: {name} — .env 를 확인하세요.")
         sys.exit(1)
+if not WATCH_DIRS:
+    print("설정 누락: WATCH_DIR — .env 를 확인하세요.")
+    sys.exit(1)
 
 
 # --- single-instance lock: refuse to start if another copy already holds it ---
@@ -197,7 +201,10 @@ STATS = {"files": 0, "bytes": 0, "day": time.strftime("%Y-%m-%d")}
 
 
 async def tick(client):
-    for path in list_files(WATCH_DIR):
+    files = []
+    for directory in WATCH_DIRS:
+        files += list_files(directory)
+    for path in files:
         try:
             st = os.stat(path)
         except Exception:
@@ -238,9 +245,9 @@ async def main():
     me = await client.get_me()
     who = ("@" + me.username) if me.username else me.first_name
     print(f"Logged in as {who}. Sending to {TARGET}.")
-    print(f"Watching {WATCH_DIR} (recursive={RECURSIVE}) for {','.join(EXTS)}")
+    print(f"Watching {', '.join(WATCH_DIRS)} (recursive={RECURSIVE}) for {','.join(EXTS)}")
     if NOTIFY_START:
-        await notify(client, f"▶️ 녹음 동기화 시작 — {WATCH_DIR} 감시 중")
+        await notify(client, f"▶️ 동기화 시작 — {', '.join(WATCH_DIRS)} 감시 중")
     while True:
         await tick(client)
         await maybe_daily_summary(client)
