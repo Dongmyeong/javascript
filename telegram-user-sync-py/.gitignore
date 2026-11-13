@@ -4,4 +4,5 @@
 .sent-state.json
 *.sent-state.json
 *.tmp
+.lock
 __pycache__/

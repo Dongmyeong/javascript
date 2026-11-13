@@ -30,12 +30,24 @@ python sync.py
 - 로그인되면 `user.session` 파일이 생기고 바로 감시를 시작합니다
 - `Logged in as @... Sending to @pe_uploader_bot` 가 뜨면 정상
 
-### 백그라운드 상시 실행 (로그인 후)
+### 백그라운드 상시 실행 — 자동복구 (권장)
+`run.sh` 는 sync.py 가 혹시 꺼져도 **스스로 다시 시작**합니다 (+ wakelock):
 ```bash
-termux-wake-lock
-nohup python sync.py > ~/user-sync.log 2>&1 &
+nohup sh run.sh > ~/user-sync.log 2>&1 &
 tail -f ~/user-sync.log
 ```
+한 번만 돌릴 거면:
+```bash
+nohup python -u sync.py > ~/user-sync.log 2>&1 &
+```
+
+## 고도화 기능
+
+- **중복 방지 잠금** — 두 번 실행해도 두 번째는 즉시 종료 (`database is locked` 원천 차단).
+- **자동 재시도** — 일시적 텔레그램/네트워크 오류는 백오프로 재시도, FloodWait 는 대기 후 재개.
+- **알림/요약** — 전송이 재시도까지 실패하면 **내 텔레그램 "저장된 메시지"** 로 경고, 매일 "오늘 N개" 요약. `NOTIFY=false` 로 끌 수 있음.
+- **자동 복구** — `run.sh` 가 프로세스가 죽으면 다시 띄움.
+- **상태 조회** — `python status.py` (마지막 전송·오늘 개수).
 
 ## 설정 (.env)
 
@@ -48,6 +60,9 @@ tail -f ~/user-sync.log
 | `MAX_PART_BYTES` |  | `19000000` | 이보다 크면 분할(봇 20MB 한도) |
 | `POLL_INTERVAL_MS` |  | `5000` | 폴더 검사 주기 |
 | `STABLE_FOR_MS` |  | `10000` | 녹음 완료 판단 대기 |
+| `MAX_RETRIES` |  | `4` | 전송 실패 시 재시도 횟수 |
+| `NOTIFY` |  | `true` | 실패 경고 + 일일 요약을 저장된 메시지로 |
+| `NOTIFY_START` |  | `false` | 시작 시에도 알림 |
 
 ## 주의
 - 동시에 보내는 도구는 **하나만** 쓰세요(중복 방지). 봇으로 보내던 기존
