@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Process KakaoTalk "모든 메시지" exports (.zip): unzip, pull out the chat text
-file, and optionally summarize it with a local Ollama model. Media inside the
-zip is ignored — we only want the conversation text.
+"""Process KakaoTalk exports on the Mac:
+  * a KakaoTalk export .zip  -> unzip, pull the chat text out, (optional) summarize
+  * a loose KakaoTalkChats.txt (shipped from the phone) -> (optional) summarize
 
-  python kakao.py path/to/KakaoTalkChats.zip
-  python kakao.py --watch /Users/donoh/.openclaw/media/inbound
-  SUMMARIZE=1 python kakao.py --watch /path   # also write <name>.summary.md
+Media inside a zip is ignored — only the conversation text matters.
+
+  python kakao.py path/to/KakaoTalkChats.txt
+  SUMMARIZE=1 python kakao.py --watch /Users/donoh/.openclaw/media/inbound
 """
 
 import argparse
@@ -42,6 +43,23 @@ def summarize(text, model, host):
         return json.loads(resp.read().decode("utf-8")).get("response", "").strip()
 
 
+def write_summary(txt_path, base, args):
+    if not args.summarize:
+        return
+    if os.path.exists(base + ".summary.md") and not args.force:
+        return
+    try:
+        with open(txt_path, encoding="utf-8", errors="replace") as fh:
+            content = fh.read()
+        log("  요약…")
+        summary = summarize(content, args.ollama_model, args.ollama_host)
+        with open(base + ".summary.md", "w", encoding="utf-8") as fh:
+            fh.write(summary + "\n")
+        log(f"  요약 → {os.path.basename(base)}.summary.md")
+    except Exception as exc:  # noqa: BLE001
+        log(f"  (요약 건너뜀: {exc})")
+
+
 def extract_chat_txt(zip_path, dest_txt):
     """Pull the largest .txt (the chat log) out of a KakaoTalk export zip."""
     with zipfile.ZipFile(zip_path) as zf:
@@ -55,36 +73,43 @@ def extract_chat_txt(zip_path, dest_txt):
 
 
 def process(path, args):
-    base = os.path.splitext(path)[0]
-    txt = base + ".chat.txt"
-    if os.path.exists(txt) and not args.force:
-        return
-    log(f"카톡 zip 처리: {os.path.basename(path)}")
-    try:
-        ok = extract_chat_txt(path, txt)
-    except zipfile.BadZipFile:
-        log("  (손상/미완성 zip — 다음에 다시)")
-        return
-    if not ok:
-        log("  (.txt 없음 — 건너뜀)")
-        return
-    log(f"  대화 추출 → {os.path.basename(txt)}")
-
-    if args.summarize:
+    low = path.lower()
+    if low.endswith(".zip"):
+        base = os.path.splitext(path)[0]
+        chat_txt = base + ".chat.txt"
+        if os.path.exists(chat_txt) and not args.force:
+            return
+        log(f"카톡 zip 처리: {os.path.basename(path)}")
         try:
-            with open(txt, encoding="utf-8", errors="replace") as fh:
-                content = fh.read()
-            log("  요약…")
-            summary = summarize(content, args.ollama_model, args.ollama_host)
-            with open(base + ".summary.md", "w", encoding="utf-8") as fh:
-                fh.write(summary + "\n")
-            log(f"  요약 → {os.path.basename(base)}.summary.md")
-        except Exception as exc:  # noqa: BLE001
-            log(f"  (요약 건너뜀: {exc})")
+            ok = extract_chat_txt(path, chat_txt)
+        except zipfile.BadZipFile:
+            log("  (손상/미완성 zip — 다음에 다시)")
+            return
+        if not ok:
+            log("  (.txt 없음 — 건너뜀)")
+            return
+        log(f"  대화 추출 → {os.path.basename(chat_txt)}")
+        write_summary(chat_txt, base, args)
+    elif low.endswith(".txt"):
+        base = os.path.splitext(path)[0]
+        if os.path.exists(base + ".summary.md") and not args.force:
+            return
+        log(f"카톡 대화 처리: {os.path.basename(path)}")
+        write_summary(path, base, args)
+
+
+def is_target(name):
+    low = name.lower()
+    if ".part" in low or low.endswith(".chat.txt"):
+        return False  # skip split parts and our own extracted output
+    if low.endswith(".zip"):
+        return True
+    # only summarize .txt that are clearly KakaoTalk exports (not transcripts)
+    return low.endswith(".txt") and "kakao" in low
 
 
 def watch(directory, args):
-    log(f"감시 시작: {directory} (카톡 .zip 자동 처리)")
+    log(f"감시 시작: {directory} (카톡 zip/.txt 자동 처리)")
     while True:
         try:
             names = sorted(os.listdir(directory))
@@ -92,7 +117,7 @@ def watch(directory, args):
             names = []
         for name in names:
             path = os.path.join(directory, name)
-            if os.path.isfile(path) and name.lower().endswith(".zip") and ".part" not in name:
+            if os.path.isfile(path) and is_target(name):
                 try:
                     process(path, args)
                 except Exception as exc:  # noqa: BLE001
@@ -101,9 +126,9 @@ def watch(directory, args):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="KakaoTalk export (.zip) -> chat text + summary")
-    ap.add_argument("input", nargs="?", help="a KakaoTalk .zip export")
-    ap.add_argument("--watch", metavar="DIR", help="watch a folder for new .zip exports")
+    ap = argparse.ArgumentParser(description="KakaoTalk export (.zip/.txt) -> chat text + summary")
+    ap.add_argument("input", nargs="?", help="a KakaoTalk .zip or .txt export")
+    ap.add_argument("--watch", metavar="DIR", help="watch a folder for new exports")
     ap.add_argument("--summarize", action="store_true",
                     default=os.environ.get("SUMMARIZE", "").lower() in ("1", "true", "yes", "on"))
     ap.add_argument("--ollama-model", default=os.environ.get("OLLAMA_MODEL", "qwen2.5:7b"))
