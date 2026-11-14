@@ -10,12 +10,12 @@ Media inside a zip is ignored — only the conversation text matters.
 """
 
 import argparse
-import json
 import os
 import shutil
 import time
-import urllib.request
 import zipfile
+
+from summarizer import summarize
 
 CHAT_SUMMARY_PROMPT = (
     "다음은 카카오톡 대화 내보내기 내용입니다. 나중에 '이 사람과의 관계와 이력'을\n"
@@ -34,17 +34,6 @@ CHAT_SUMMARY_PROMPT = (
 
 def log(*a):
     print(time.strftime("%H:%M:%S"), *a, flush=True)
-
-
-def summarize(text, model, host):
-    body = json.dumps({"model": model, "prompt": CHAT_SUMMARY_PROMPT + text, "stream": False})
-    req = urllib.request.Request(
-        host.rstrip("/") + "/api/generate",
-        data=body.encode("utf-8"),
-        headers={"Content-Type": "application/json"},
-    )
-    with urllib.request.urlopen(req, timeout=1200) as resp:
-        return json.loads(resp.read().decode("utf-8")).get("response", "").strip()
 
 
 def chat_header(txt_path):
@@ -82,7 +71,7 @@ def write_summary(txt_path, base, args):
         room, saved = chat_header(txt_path)
         log(f"  대화방: {room or '(알 수 없음)'}")
         log("  요약…")
-        summary = summarize(content, args.ollama_model, args.ollama_host)
+        summary = summarize(content, CHAT_SUMMARY_PROMPT, args.ollama_model, args.ollama_host, log)
         header = f"# 카톡 대화 요약 — {room or os.path.basename(base)}\n"
         if saved:
             header += f"> 저장 날짜: {saved}\n"

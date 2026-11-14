@@ -22,7 +22,8 @@ import subprocess
 import sys
 import tempfile
 import time
-import urllib.request
+
+from summarizer import summarize
 
 AUDIO_EXTS = {".m4a", ".mp3", ".wav", ".aac", ".amr", ".ogg", ".opus", ".3gp", ".flac"}
 
@@ -145,19 +146,6 @@ SUMMARY_PROMPT = (
 )
 
 
-def summarize(text, model, host):
-    """Summarize a transcript with a local Ollama model (open source, on-device).
-    No extra Python dependency — plain HTTP."""
-    body = json.dumps({"model": model, "prompt": SUMMARY_PROMPT + text, "stream": False})
-    req = urllib.request.Request(
-        host.rstrip("/") + "/api/generate",
-        data=body.encode("utf-8"),
-        headers={"Content-Type": "application/json"},
-    )
-    with urllib.request.urlopen(req, timeout=1200) as resp:
-        return json.loads(resp.read().decode("utf-8")).get("response", "").strip()
-
-
 def process(path, args):
     base = os.path.splitext(path)[0]
     if os.path.exists(base + ".txt") and not args.force:
@@ -186,7 +174,7 @@ def process(path, args):
                 log(f"[요약] {args.ollama_model} …")
                 with open(base + ".txt", encoding="utf-8") as fh:
                     transcript = fh.read()
-                summary = summarize(transcript, args.ollama_model, args.ollama_host)
+                summary = summarize(transcript, SUMMARY_PROMPT, args.ollama_model, args.ollama_host, log)
                 with open(base + ".summary.md", "w", encoding="utf-8") as fh:
                     fh.write(summary + "\n")
                 log(f"요약 → {base}.summary.md")
