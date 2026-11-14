@@ -101,6 +101,23 @@ SUMMARIZE=1 python transcribe.py --watch /Users/donoh/.openclaw/media/inbound
 
 > Ollama가 안 떠 있으면 요약만 자동 생략되고 전사는 정상 완료됩니다.
 
+## 카카오톡 대화(.zip) 처리 — kakao.py
+
+카카오톡 개인대화는 "모든 메시지 내부저장소에 저장"(.zip)만 됩니다. 그 .zip이
+맥 inbound로 들어오면, `kakao.py` 가 **압축을 풀어 대화 텍스트만 뽑고**(미디어는
+무시) 선택적으로 요약합니다.
+
+```bash
+cd ~/javascript/mac-transcribe && source .venv/bin/activate
+# 하나 처리
+python kakao.py "/Users/donoh/.openclaw/media/inbound/KakaoTalkChats.zip"
+# 폴더 감시 + 요약
+SUMMARIZE=1 python kakao.py --watch /Users/donoh/.openclaw/media/inbound
+```
+→ `<이름>.chat.txt`(대화 전문) + `<이름>.summary.md`(요약) 생성.
+
+> 전사(`transcribe.py --watch`)와 **나란히** 돌리면 됩니다. transcribe는 오디오,
+> kakao는 .zip 을 각각 맡아 충돌하지 않습니다.
+
 ## 다음 단계 (원하면 추가)
 - 기존 openclaw 파이프라인에 이 전사·요약 단계를 끼워넣기
-- 카카오톡 대화(.txt) 요약도 같은 요약기로 처리
