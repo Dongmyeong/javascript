@@ -1,0 +1,17 @@
+{
+  "name": "telegram-user-sync",
+  "version": "1.0.0",
+  "description": "Watch a folder and send new recordings to a Telegram bot AS YOUR USER ACCOUNT (MTProto), so they look exactly like manual uploads and the receiver's getUpdates poller sees them. Large files are split so the receiving bot can download each part.",
+  "main": "index.js",
+  "scripts": {
+    "login": "node login.js",
+    "start": "node index.js",
+    "check": "for f in index.js login.js lib/*.js; do node --check \"$f\" || exit 1; done"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "telegram": "^2.22.2"
+  },
+  "license": "MIT",
+  "private": true
+}

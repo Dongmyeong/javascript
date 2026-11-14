@@ -1,0 +1,6 @@
+# High-quality transcription on Apple Silicon (M-series).
+faster-whisper>=1.0        # transcription (large-v3), stable CPU int8 on Mac
+# Speaker diarization (optional — needs a free HuggingFace token). Comment these
+# two out if you only want transcription:
+pyannote.audio>=3.1
+torch>=2.2

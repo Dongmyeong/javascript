@@ -1,0 +1,5 @@
+node_modules/
+.env
+.sent-state.json
+*.sent-state.json
+*.tmp
