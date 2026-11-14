@@ -43,6 +43,30 @@ def summarize(text, model, host):
         return json.loads(resp.read().decode("utf-8")).get("response", "").strip()
 
 
+def chat_header(txt_path):
+    """Pull the chat room / person name and saved-date from a KakaoTalk export's
+    first lines, e.g. 'OOO 님과 카카오톡 대화' / '저장한 날짜 : ...'."""
+    room, saved = "", ""
+    try:
+        with open(txt_path, encoding="utf-8", errors="replace") as fh:
+            for _ in range(8):
+                line = fh.readline()
+                if not line:
+                    break
+                line = line.strip()
+                if not line:
+                    continue
+                if ("카카오톡 대화" in line or "님과" in line) and not room:
+                    room = line
+                elif line.startswith("저장한 날짜") and not saved:
+                    saved = line.split(":", 1)[-1].strip()
+                elif not room:
+                    room = line  # fallback: first non-empty line
+    except OSError:
+        pass
+    return room, saved
+
+
 def write_summary(txt_path, base, args):
     if not args.summarize:
         return
@@ -51,10 +75,15 @@ def write_summary(txt_path, base, args):
     try:
         with open(txt_path, encoding="utf-8", errors="replace") as fh:
             content = fh.read()
+        room, saved = chat_header(txt_path)
+        log(f"  대화방: {room or '(알 수 없음)'}")
         log("  요약…")
         summary = summarize(content, args.ollama_model, args.ollama_host)
+        header = f"# 카톡 대화 요약 — {room or os.path.basename(base)}\n"
+        if saved:
+            header += f"> 저장 날짜: {saved}\n"
         with open(base + ".summary.md", "w", encoding="utf-8") as fh:
-            fh.write(summary + "\n")
+            fh.write(header + "\n" + summary + "\n")
         log(f"  요약 → {os.path.basename(base)}.summary.md")
     except Exception as exc:  # noqa: BLE001
         log(f"  (요약 건너뜀: {exc})")

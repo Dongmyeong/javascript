@@ -178,11 +178,29 @@ async def send_unit(client, source, caption):
             await asyncio.sleep(backoff)
 
 
+def send_name(path):
+    """Filename to send under. KakaoTalk exports are all 'KakaoTalkChats.txt';
+    use the parent folder name (which carries the date + chat-room id) so each
+    export is uniquely identifiable on the receiving side."""
+    base = os.path.basename(path)
+    if base == "KakaoTalkChats.txt":
+        parent = os.path.basename(os.path.dirname(path))
+        if parent:
+            return parent + ".txt"
+    return base
+
+
 async def send_recording(client, path, st):
-    name = os.path.basename(path)
+    name = send_name(path)
     if st.st_size <= MAX_PART:
         print(now(), f"Sending: {name} ({st.st_size / 1048576:.1f}MB)")
-        await send_unit(client, path, name)
+        if name != os.path.basename(path):
+            # custom filename (small files only, e.g. KakaoTalk .txt)
+            with open(path, "rb") as fh:
+                data = fh.read()
+            await send_unit(client, (data, name), name)
+        else:
+            await send_unit(client, path, name)
         return 1
     total = max(1, math.ceil(st.st_size / MAX_PART))
     width = len(str(total))
