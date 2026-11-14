@@ -146,45 +146,53 @@ SUMMARY_PROMPT = (
 )
 
 
+def maybe_summarize(base, args):
+    if not args.summarize:
+        return
+    if os.path.exists(base + ".summary.md") and not args.force:
+        return
+    try:
+        log(f"[요약] {args.ollama_model} …")
+        with open(base + ".txt", encoding="utf-8", errors="replace") as fh:
+            transcript = fh.read()
+        summary = summarize(transcript, SUMMARY_PROMPT, args.ollama_model, args.ollama_host, log)
+        with open(base + ".summary.md", "w", encoding="utf-8") as fh:
+            fh.write(summary + "\n")
+        log(f"요약 → {base}.summary.md")
+    except Exception as exc:  # noqa: BLE001
+        log(f"  (요약 건너뜀: {exc})")
+
+
 def process(path, args):
     base = os.path.splitext(path)[0]
-    if os.path.exists(base + ".txt") and not args.force:
-        return  # already transcribed
-    fd, wav = tempfile.mkstemp(suffix=".wav")
-    os.close(fd)
-    try:
-        log(f"[1/3] 전처리: {os.path.basename(path)}")
-        preprocess(path, wav)
-        prompt = load_vocab(args.vocab)
-        log(f"[2/3] 전사 ({args.model})…")
-        segments = transcribe(wav, args.model, prompt)
-        diarized = False
-        if args.hf_token:
-            log("[3/3] 화자 구분…")
-            try:
-                turns = diarize(wav, args.hf_token)
-                segments = assign_speakers(segments, turns)
-                diarized = True
-            except Exception as exc:  # noqa: BLE001
-                log(f"  (화자구분 건너뜀: {exc})")
-        write_outputs(base, segments, diarized)
-        log(f"완료 → {base}.txt / .srt / .json" + (" (화자구분 O)" if diarized else ""))
-        if args.summarize:
-            try:
-                log(f"[요약] {args.ollama_model} …")
-                with open(base + ".txt", encoding="utf-8") as fh:
-                    transcript = fh.read()
-                summary = summarize(transcript, SUMMARY_PROMPT, args.ollama_model, args.ollama_host, log)
-                with open(base + ".summary.md", "w", encoding="utf-8") as fh:
-                    fh.write(summary + "\n")
-                log(f"요약 → {base}.summary.md")
-            except Exception as exc:  # noqa: BLE001
-                log(f"  (요약 건너뜀: {exc})")
-    finally:
+    # Transcribe only if not done yet; but still (re)summarize if missing, so a
+    # file transcribed while Ollama was down gets its summary on the next scan.
+    if not os.path.exists(base + ".txt") or args.force:
+        fd, wav = tempfile.mkstemp(suffix=".wav")
+        os.close(fd)
         try:
-            os.remove(wav)
-        except OSError:
-            pass
+            log(f"[1/3] 전처리: {os.path.basename(path)}")
+            preprocess(path, wav)
+            prompt = load_vocab(args.vocab)
+            log(f"[2/3] 전사 ({args.model})…")
+            segments = transcribe(wav, args.model, prompt)
+            diarized = False
+            if args.hf_token:
+                log("[3/3] 화자 구분…")
+                try:
+                    turns = diarize(wav, args.hf_token)
+                    segments = assign_speakers(segments, turns)
+                    diarized = True
+                except Exception as exc:  # noqa: BLE001
+                    log(f"  (화자구분 건너뜀: {exc})")
+            write_outputs(base, segments, diarized)
+            log(f"완료 → {base}.txt / .srt / .json" + (" (화자구분 O)" if diarized else ""))
+        finally:
+            try:
+                os.remove(wav)
+            except OSError:
+                pass
+    maybe_summarize(base, args)
 
 
 def watch(directory, args):
